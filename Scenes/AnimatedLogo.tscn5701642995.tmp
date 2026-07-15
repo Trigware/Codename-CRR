@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://hbyg5sonndl1"]
+
+[ext_resource type="Script" uid="uid://ba7uqyepst2yj" path="res://Scripts/AnimatedLogo.gd" id="1_4c05g"]
+[ext_resource type="SpriteFrames" uid="uid://c40yt3y5iwq2k" path="res://Spriteframes/WeirdTree.tres" id="1_hnc0u"]
+[ext_resource type="Texture2D" uid="uid://yx7uomvo0uwu" path="res://Textures/Title Screen/Generic Cross.png" id="1_s4i7f"]
+[ext_resource type="Texture2D" uid="uid://bfk0e41f7l3px" path="res://Textures/Title Screen/Logo Mushroom.png" id="2_q7cmh"]
+[ext_resource type="SpriteFrames" uid="uid://dey33v0f1l7h" path="res://Spriteframes/LogoLeaf.tres" id="3_hnc0u"]
+[ext_resource type="Texture2D" uid="uid://bp7qe3jvvowjq" path="res://Textures/Title Screen/Logo Crowbar.png" id="4_q7cmh"]
+[ext_resource type="Texture2D" uid="uid://cf8v5dsn4g0s8" path="res://Textures/Title Screen/Blue Logo Magnet.png" id="5_b1jm4"]
+[ext_resource type="Texture2D" uid="uid://crd6u4re4xfvn" path="res://Textures/Title Screen/Red Logo Magnet.png" id="6_1chqj"]
+[ext_resource type="PackedScene" uid="uid://c8c6beh12fp8u" path="res://Scenes/LogoRocks.tscn" id="7_1chqj"]
+[ext_resource type="Texture2D" uid="uid://dwmqihrqikc6" path="res://Textures/Title Screen/Logo Eyebrows.png" id="8_64mes"]
+[ext_resource type="Texture2D" uid="uid://uqgpsf4w67ci" path="res://Textures/Title Screen/Eye Center.png" id="9_i4avo"]
+[ext_resource type="SpriteFrames" uid="uid://cqgv4a7d4hn78" path="res://Spriteframes/LogoDNA.tres" id="10_222rm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2exp7"]
+atlas = ExtResource("4_q7cmh")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1jm4"]
+atlas = ExtResource("4_q7cmh")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1chqj"]
+atlas = ExtResource("4_q7cmh")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64mes"]
+atlas = ExtResource("4_q7cmh")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4avo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2exp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1jm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1chqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64mes")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="AnimatedLogo" type="Node2D" unique_id=87046729]
+script = ExtResource("1_4c05g")
+
+[node name="Generic Cross" type="Sprite2D" parent="." unique_id=2137125906]
+position = Vector2(221.5, 3)
+texture = ExtResource("1_s4i7f")
+
+[node name="Weird Tree" type="AnimatedSprite2D" parent="." unique_id=338835185]
+position = Vector2(25, -1)
+sprite_frames = ExtResource("1_hnc0u")
+frame = 4
+frame_progress = 1.0
+
+[node name="Mushroom" type="Sprite2D" parent="." unique_id=1499756767]
+position = Vector2(58.5, 0)
+texture = ExtResource("2_q7cmh")
+
+[node name="Leaf" type="AnimatedSprite2D" parent="." unique_id=1831165147]
+position = Vector2(90.5, 0)
+sprite_frames = ExtResource("3_hnc0u")
+frame = 4
+frame_progress = 1.0
+
+[node name="Crowbar" type="AnimatedSprite2D" parent="." unique_id=1003443313]
+position = Vector2(119.5, 1)
+sprite_frames = SubResource("SpriteFrames_i4avo")
+
+[node name="Magnet" type="Node2D" parent="." unique_id=1079288325]
+position = Vector2(169.5, -17)
+
+[node name="Blue Magnet" type="Sprite2D" parent="Magnet" unique_id=720216143]
+texture = ExtResource("5_b1jm4")
+
+[node name="Red Magnet" type="Sprite2D" parent="Magnet" unique_id=765459970]
+position = Vector2(0, 31)
+texture = ExtResource("6_1chqj")
+
+[node name="Rocks" parent="." unique_id=758164388 instance=ExtResource("7_1chqj")]
+position = Vector2(219.5, 29)
+
+[node name="Eye" type="Node2D" parent="." unique_id=2026353245]
+position = Vector2(286.5, 0)
+
+[node name="Top" type="Sprite2D" parent="Eye" unique_id=1666080368]
+position = Vector2(0, -25)
+texture = ExtResource("8_64mes")
+
+[node name="Down" type="Sprite2D" parent="Eye" unique_id=2056868967]
+position = Vector2(0, 25)
+scale = Vector2(1, -1)
+texture = ExtResource("8_64mes")
+
+[node name="Center" type="Sprite2D" parent="Eye" unique_id=772269156]
+texture = ExtResource("9_i4avo")
+
+[node name="Blue DNA" type="AnimatedSprite2D" parent="." unique_id=676769066]
+modulate = Color(0.21176471, 1, 0.93333334, 1)
+position = Vector2(338.5, 0)
+sprite_frames = ExtResource("10_222rm")
+animation = &"top"
+frame = 9
+frame_progress = 1.0
+
+[node name="Orange DNA" type="AnimatedSprite2D" parent="." unique_id=1623853814]
+modulate = Color(1, 0.6666667, 0.16862746, 1)
+position = Vector2(381.5, 0)
+sprite_frames = ExtResource("10_222rm")
+animation = &"top"
+frame = 9
+frame_progress = 1.0

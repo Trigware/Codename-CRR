@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://detyxrac88rkp"]
+
+[ext_resource type="Texture2D" uid="uid://crcj0j8iranxd" path="res://Textures/Title Screen/Big Leaf.png" id="1_hat3o"]
+[ext_resource type="Script" uid="uid://ckxxo8xc3qeoy" path="res://Scripts/BossLeaf.gd" id="1_mxent"]
+
+[node name="Boss Leaf" type="Node2D" unique_id=1512060177]
+script = ExtResource("1_mxent")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1593719432]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2, 3)
+texture = ExtResource("1_hat3o")
+hframes = 5
+frame = 4
+
+[node name="Leaf" type="Sprite2D" parent="." unique_id=1350054925]
+texture = ExtResource("1_hat3o")
+hframes = 5
+frame = 4

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://c8c6beh12fp8u"]
+
+[ext_resource type="Script" uid="uid://dmkfoj54ti2ac" path="res://Scripts/LogoRocks.gd" id="1_3oqss"]
+[ext_resource type="Texture2D" uid="uid://ct7jcs8j5g6vb" path="res://Textures/Title Screen/Logo Rocks.png" id="1_y02gp"]
+
+[node name="Logo Rocks" type="Node2D" unique_id=758164388]
+script = ExtResource("1_3oqss")
+
+[node name="Rock0" type="Sprite2D" parent="." unique_id=868884372]
+position = Vector2(0, -3)
+texture = ExtResource("1_y02gp")
+hframes = 12
+
+[node name="Rock1" type="Sprite2D" parent="." unique_id=1606280048]
+position = Vector2(-2, -15)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 1
+
+[node name="Rock2" type="Sprite2D" parent="." unique_id=2133220175]
+position = Vector2(-2, -28)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 2
+
+[node name="Rock3" type="Sprite2D" parent="." unique_id=1118031551]
+position = Vector2(-5, -42)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 3
+
+[node name="Rock4" type="Sprite2D" parent="." unique_id=1227074175]
+position = Vector2(0, -53)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 4
+
+[node name="Rock5" type="Sprite2D" parent="." unique_id=158015823]
+position = Vector2(17, -55)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 5
+
+[node name="Rock6" type="Sprite2D" parent="." unique_id=1483166169]
+position = Vector2(32, -52)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 6
+
+[node name="Rock7" type="Sprite2D" parent="." unique_id=1986753270]
+position = Vector2(38, -44)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 7
+
+[node name="Rock8" type="Sprite2D" parent="." unique_id=10646499]
+position = Vector2(27, -30)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 8
+
+[node name="Rock9" type="Sprite2D" parent="." unique_id=1290608191]
+position = Vector2(17, -25)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 9
+
+[node name="Rock10" type="Sprite2D" parent="." unique_id=872292009]
+position = Vector2(27, -15)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 10
+
+[node name="Rock11" type="Sprite2D" parent="." unique_id=876898179]
+position = Vector2(33, -5)
+texture = ExtResource("1_y02gp")
+hframes = 12
+frame = 11

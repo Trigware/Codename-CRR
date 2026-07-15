@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://blcvhwty6uhhq"]
+
+[ext_resource type="Script" uid="uid://qh7myoxnegk4" path="res://Scripts/BoundsWindow.gd" id="1_y5f0i"]
+[ext_resource type="PackedScene" uid="uid://hbyg5sonndl1" path="res://Scenes/AnimatedLogo.tscn" id="2_7sg6g"]
+
+[node name="BoundsWindow" type="Window" unique_id=797944292]
+oversampling_override = 1.0
+initial_position = 1
+script = ExtResource("1_y5f0i")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1112096009]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedLogo" parent="." unique_id=87046729 instance=ExtResource("2_7sg6g")]
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=460331329]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.65, 0.65, 0.65, 1)

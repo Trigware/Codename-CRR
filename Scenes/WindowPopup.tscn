@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://csxmjbgod123e"]
+
+[ext_resource type="Script" uid="uid://ov2gf6kr2d62" path="res://Scripts/WindowPopup.gd" id="1_bm7hj"]
+[ext_resource type="Texture2D" uid="uid://bbabfl0jbc3jr" path="res://Textures/FragVertex.png" id="1_vqcpm"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="2_pjn5r"]
+[ext_resource type="Texture2D" uid="uid://dt1rrcqicxjk0" path="res://Textures/WindowButton.png" id="3_lb4ew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7hj"]
+size = Vector2(121, 50.5)
+
+[node name="Window Popup" type="Window" unique_id=337976246]
+canvas_item_default_texture_filter = 0
+oversampling_override = 1.0
+mode = 1
+title = "Fragmented Vertex Protocol"
+position = Vector2i(8, 36)
+size = Vector2i(480, 225)
+script = ExtResource("1_bm7hj")
+hovered_button_color = Color(0.6509804, 0.9019608, 1, 1)
+
+[node name="Upper Background" type="ColorRect" parent="." unique_id=1128606782]
+offset_right = 480.0
+offset_bottom = 147.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Bottom Background" type="ColorRect" parent="." unique_id=118663381]
+offset_top = 147.0
+offset_right = 480.0
+offset_bottom = 306.0
+color = Color(0.72, 0.72, 0.72, 1)
+
+[node name="Seperator" type="ColorRect" parent="." unique_id=1640606083]
+offset_top = 145.0
+offset_right = 480.0
+offset_bottom = 148.0
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Logo Shadow" type="Sprite2D" parent="." unique_id=1286472773]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+position = Vector2(21, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("1_vqcpm")
+centered = false
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=1081175375]
+texture_filter = 1
+position = Vector2(15, 15)
+scale = Vector2(3, 3)
+texture = ExtResource("1_vqcpm")
+centered = false
+
+[node name="Message" type="Label" parent="." unique_id=206373662]
+texture_filter = 1
+texture_repeat = 2
+offset_left = 126.0
+offset_top = 6.0
+offset_right = 461.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+theme_override_fonts/font = ExtResource("2_pjn5r")
+theme_override_font_sizes/font_size = 40
+text = "This is a message!"
+autowrap_mode = 3
+
+[node name="OkButton" type="Area2D" parent="." unique_id=2121929339]
+
+[node name="Button Texture" type="Sprite2D" parent="OkButton" unique_id=203154931]
+position = Vector2(401, 188)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("3_lb4ew")
+
+[node name="OkLabel" type="Label" parent="OkButton" unique_id=1267719949]
+modulate = Color(0, 0, 0, 1)
+offset_left = 343.0
+offset_top = 165.0
+offset_right = 459.0
+offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("2_pjn5r")
+theme_override_font_sizes/font_size = 44
+text = "Ok"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Collider" type="CollisionShape2D" parent="OkButton" unique_id=1720369511]
+visible = false
+position = Vector2(401.5, 187.75)
+shape = SubResource("RectangleShape2D_bm7hj")

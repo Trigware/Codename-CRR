@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bkp4oc1oxdrjl"]
+
+[ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="1_6qa2i"]
+[ext_resource type="Texture2D" uid="uid://ye3xlqm7vgaf" path="res://Textures/MouseCursor.png" id="2_6qa2i"]
+[ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="3_6qa2i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qa2i"]
+shader = ExtResource("1_6qa2i")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(0.3, 0.4)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 6.0
+shader_parameter/gap_size = 0.519
+shader_parameter/pattern_repeated = 39.82397187499876
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("2_6qa2i")
+shader_parameter/texture_progress = 1.0
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/tile_size = 0.0
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.0
+shader_parameter/inner_circle_radius = 0.0
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pq3g"]
+shader = ExtResource("1_6qa2i")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(0.3, 0.4)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 20.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 0.0
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("2_6qa2i")
+shader_parameter/texture_progress = 1.0
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/tile_size = 0.1
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.0
+shader_parameter/inner_circle_radius = 0.0
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
+
+[node name="Cursor" type="Node2D" unique_id=1892576167]
+material = SubResource("ShaderMaterial_6qa2i")
+rotation = -5.410683e-05
+scale = Vector2(1.5, 1.5)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1485388977]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+position = Vector2(1, 2)
+texture = ExtResource("2_6qa2i")
+centered = false
+
+[node name="Main" parent="." unique_id=279757855 instance=ExtResource("3_6qa2i")]
+z_index = 1
+material = SubResource("ShaderMaterial_8pq3g")
+offset_right = 12.0
+offset_bottom = 16.0
+base_texture = ExtResource("2_6qa2i")
+empty_tiles_rate = 0.0

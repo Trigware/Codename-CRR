@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kov0wyn63y6q"
+path="res://.godot/imported/Rocks Fall.mp3-e12df1bae2f58e14cfbe839939c316b0.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Rocks Fall.mp3"
+dest_files=["res://.godot/imported/Rocks Fall.mp3-e12df1bae2f58e14cfbe839939c316b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

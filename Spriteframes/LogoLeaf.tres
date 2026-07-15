@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dey33v0f1l7h"]
+
+[ext_resource type="Texture2D" uid="uid://crcj0j8iranxd" path="res://Textures/Title Screen/Big Leaf.png" id="1_j31k0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1jm4"]
+atlas = ExtResource("1_j31k0")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1chqj"]
+atlas = ExtResource("1_j31k0")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64mes"]
+atlas = ExtResource("1_j31k0")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4avo"]
+atlas = ExtResource("1_j31k0")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_222rm"]
+atlas = ExtResource("1_j31k0")
+region = Rect2(200, 0, 50, 50)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1jm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1chqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64mes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4avo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_222rm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]

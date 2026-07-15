@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c1pfplxjs7bje"]
+
+[ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="1_8vwrn"]
+[ext_resource type="Texture2D" uid="uid://do7eaeam32agw" path="res://Textures/MissingTexture.png" id="2_slix1"]
+
+[resource]
+shader = ExtResource("1_8vwrn")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(0.425, 0.425)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 20.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 235.39152688239878
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("2_slix1")
+shader_parameter/texture_progress = 0.85
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/tile_size = 0.3
+shader_parameter/empty_tiles = [true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false, true, true, true, true, true, true, true, true, true, true, false, false, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, false, true, true, false, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, false, true, true, true, true, true, true, false, true, false, true, true, true, false, true, false, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false, true, true, false, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true, false, false, true, false, true, true, true, true, true, false, false, true, true, false, false, false, true, true, true, true, true, false, false, true, false, false, true, true, true, true, false, true, true, true, false, true, false, false, true, true, false, true, true, true, true, true, false, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true]

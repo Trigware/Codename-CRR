@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c40yt3y5iwq2k"]
+
+[ext_resource type="Texture2D" uid="uid://det2tpul5dajn" path="res://Textures/Title Screen/Weird Tree.png" id="1_rg6el"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qac8n"]
+atlas = ExtResource("1_rg6el")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnc0u"]
+atlas = ExtResource("1_rg6el")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7cmh"]
+atlas = ExtResource("1_rg6el")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2exp7"]
+atlas = ExtResource("1_rg6el")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1jm4"]
+atlas = ExtResource("1_rg6el")
+region = Rect2(256, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qac8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnc0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7cmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2exp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1jm4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
