@@ -8,7 +8,7 @@ extends Area2D
 
 const amount_of_ui_textures = 8
 var chosen_x_texture = -1
-const projectile_modulate_tween_duration = 0.45
+const projectile_modulate_tween_duration = 0.15
 var alpha_mod: float = 0
 
 var projectile_scale: float = 1
@@ -30,7 +30,8 @@ func update_modulate():
 	modulate.a = alpha_mod
 	missing_texture.alpha_modulate = alpha_mod
 
-var movement_dir = Vector2.DOWN
+var movement_angle: float
+var angle_center_diff: float
 
 const texture_change_attempt_limit = 100
 const texture_change_duration = 0.6
@@ -46,13 +47,16 @@ func change_projectile_texture():
 	await Help.wait(texture_change_duration)
 	change_projectile_texture()
 
-var projectile_speed = 0.35
+var projectile_speed: float = 0.25
+var speed_multiplier: float = 1
 const projectile_speed_increase: float = 0.85
 
 func move_projectile(delta: float):
 	var monitor_size = DisplayServer.screen_get_size()
 	var lesser_dimen_size = min(monitor_size.x, monitor_size.y)
-	var pos_delta = movement_dir * lesser_dimen_size * projectile_speed * delta
+	var movement_dir = Vector2.from_angle(movement_angle)
+	#movement_angle += angle_center_diff * delta
+	var pos_delta = movement_dir * lesser_dimen_size * projectile_speed * speed_multiplier * delta
 	position += pos_delta
 	handle_hitting_monitor_bounds()
 
@@ -72,3 +76,4 @@ func handle_hitting_monitor_bounds():
 	explosion_effect.global_transform = global_transform
 	explosion_effect.start()
 	projectile_root.add_child(explosion_effect)
+	queue_free()

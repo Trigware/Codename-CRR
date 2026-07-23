@@ -7,6 +7,28 @@
 [ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="5_i3xnt"]
 [ext_resource type="Script" uid="uid://7xff5if4c11r" path="res://Scripts/LeafBossHandlerer.gd" id="7_sg2ww"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg2ww"]
+shader = ExtResource("5_i3xnt")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(1.25, 1.25)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 20.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 18.86881450000019
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("4_6i3ph")
+shader_parameter/texture_progress = 1.0
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/tile_size = 0.1
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
+shader_parameter/is_shadow = false
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3xnt"]
 shader = ExtResource("5_i3xnt")
 shader_parameter/pixel_count = Vector2(1000, 1000)
@@ -35,12 +57,12 @@ shader_parameter/texture_size = Vector2(2, 2)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 3.0
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 5.602929150000014
+shader_parameter/pattern_repeated = 0.0
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
 shader_parameter/alpha_modulate = 1.0
-shader_parameter/tile_size = 0.1
+shader_parameter/tile_size = 0.0
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = true
 shader_parameter/outer_circle_radius = 0.5
@@ -60,6 +82,7 @@ hframes = 5
 frame = 4
 
 [node name="Leaf" parent="." unique_id=279757855 instance=ExtResource("3_uipbx")]
+material = SubResource("ShaderMaterial_sg2ww")
 offset_left = -25.0
 offset_top = -25.0
 offset_right = 25.0
@@ -70,13 +93,7 @@ position_offset = Vector2(-25, -25)
 base_texture = ExtResource("4_6i3ph")
 texture_progress = 1.0
 empty_tiles_change_duration = 0.0
-empty_tiles_rate = 0.0
-circle_filter_enabled = null
-outer_circle_radius = null
-inner_circle_radius = null
-highlight_circle_radius_offset = null
-highlighted_circle_modulate = null
-is_shadow = null
+circle_filter_enabled = false
 
 [node name="RingShadow" parent="." unique_id=899718494 instance=ExtResource("3_uipbx")]
 material = SubResource("ShaderMaterial_i3xnt")
@@ -88,10 +105,7 @@ pivot_offset = Vector2(40, 40)
 diagonal_lines = 4.0
 value_offset = 0.035
 position_offset = Vector2(-35.13, -37)
-empty_tiles_rate = 0.0
 scale_affects_position = false
-circle_filter_enabled = true
-outer_circle_radius = 0.5
 inner_circle_radius = 0.385
 highlight_circle_radius_offset = 0.04
 highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)
@@ -107,14 +121,11 @@ pivot_offset = Vector2(40, 40)
 diagonal_lines = 3.0
 value_offset = 0.045
 position_offset = Vector2(-40, -40)
-empty_tiles_rate = 0.0
+tile_size = 0.0
 scale_affects_position = false
-circle_filter_enabled = true
-outer_circle_radius = 0.5
 inner_circle_radius = 0.385
 highlight_circle_radius_offset = 0.04
 highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)
-is_shadow = null
 
 [node name="Boss Handlerer" type="Node2D" parent="." unique_id=51678165]
 script = ExtResource("7_sg2ww")

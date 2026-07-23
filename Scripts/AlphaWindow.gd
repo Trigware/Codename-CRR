@@ -6,6 +6,7 @@ extends Node2D
 @onready var mouse_cursor = $Cursor
 @onready var mouse_texture = mouse_cursor.get_node("Main")
 @onready var boss_leaf = $"Boss Leaf"
+@onready var boss_projectiles = $"Boss Projectiles"
 
 const init_window_position = Vector2(0, 32)
 var is_root_fullscreen = false
@@ -38,6 +39,7 @@ func _process(delta: float):
 	var intended_window_mode = Window.MODE_FULLSCREEN if is_root_fullscreen else Window.MODE_MINIMIZED
 	if alpha_window.mode != intended_window_mode: alpha_window.mode = intended_window_mode
 	if Input.is_action_just_pressed("quit_game"): get_tree().quit()
+	if Input.is_action_just_pressed("debug_progress") and skip_enabled: handle_out_of_box_mouse_event()
 	handle_cursor_gravity(delta)
 
 const cursor_gravity_multiplier: float = 80
@@ -114,7 +116,7 @@ const minimum_duration_multiplier = 0.7
 const glitch_screen_shake_magnitude = 45
 const window_shake_multiplier = 1.5
 const mouse_cursor_reset_pos_tween_duration = 0.35
-const skip_enabled = false
+const skip_enabled = true
 
 func on_cursor_glitch_event():
 	Help.tween(mouse_texture, "texture_progress", 0, glitch_mouse_tween_duration)

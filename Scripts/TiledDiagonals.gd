@@ -115,6 +115,11 @@ func handle_empty_tiles():
 	
 	randomize_empty_tile_array()
 
+func reset_circle_values():
+	outer_circle_radius = 0
+	inner_circle_radius = 0
+	highlight_circle_radius_offset = 0
+
 func randomize_empty_tile_array():
 	var empty_tile_array = []
 	for i in range(tile_array_count):

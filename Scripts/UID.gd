@@ -18,5 +18,7 @@ const IMG_FRAGTEX_LOGO = preload("uid://bbabfl0jbc3jr")
 const SCN_WINDOW_POPUP = preload("uid://csxmjbgod123e")
 const SCN_UI_PROJECTILE = preload("uid://gb4kkg3wxfy")
 const SCN_EXPLOSION = preload("uid://b6tuxk7jwp8wj")
+const SCN_SPAWNED_EMITTER = preload("uid://dg0q5p68r5rna")
 
 const SHD_PROJECTILE_GLITCHING = preload("uid://c1pfplxjs7bje")
+const SHD_SPAWNED_EMITTER = preload("uid://duqyjb1k0p5is")

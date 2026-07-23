@@ -1,0 +1,42 @@
+room LevelPuzzleRoom
+
+interactable InfoTablet : Narrator
+	Do you want to hear the explanation for this puzzle or do you want to try to find out how it works on your own?
+	- Hear explanation:
+		do hide_textbox
+		do move_camera(camera_destination) and wait
+		wait 0.6s
+		do show_textbox
+		
+		In this puzzle your objective is to turn all levers on.
+		A lever is on if it's pointing to the right.
+		If you turn on a lever {do toggle_lever(lever_puzzle)}, {p}a laser of the same color will also turn on and vise versa.
+		Lasers block you from accessing some ladders with levers.
+		You can determine if a laser will appear beforehand by the colored things on the sides of ladders.
+		
+		do stop_toggling
+		So think about what will pulling a certain lever do, so you could get to the correct outcome!
+		do require_input and wait
+		do wait_until_toggling_stops and wait
+		do return_camera
+	- Try to think out it more: exit
+
+group Settings(name, description)
+VolumeMaster
+	[en] Master Volume, volume of both sound effects and music
+	[cz] Celková hlasitost, hlasitost zvukových efektů i hudby
+
+get_group_member(SettingsGroup.VolumeMaster)
+
+class SettingsMember:
+	var name: String
+	var description: String
+	static func ctor(_name, _description) -> SettingsMember:
+		var instance := SettingsMember.new()
+		instance.name = _name
+		instance.description = _description
+		return instance
+
+enum SettingsGroup {
+	VolumeMaster
+}
