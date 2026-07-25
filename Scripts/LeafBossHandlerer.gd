@@ -10,8 +10,11 @@ func _ready():
 	mouse_cursor = leaf_root.mouse_cursor
 	boss_projectiles = leaf_root.get_parent().get_node("Boss Projectiles")
 
+const leaf_start_fire_projectile = 0.175
+
 func start_boss():
 	await show_ring()
+	projectile_speed = leaf_start_fire_projectile
 	fire_projectile_ring()
 	var monitor_size = DisplayServer.screen_get_size()
 	Help.tween(leaf_root, "position:y", monitor_size.y / 2, 4)

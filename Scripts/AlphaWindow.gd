@@ -22,6 +22,7 @@ func _ready():
 	alpha_window.size = monitor_size
 	var cursor_size_multiplier = monitor_size.y / base_monitor_height
 	mouse_cursor.scale = Vector2.ONE * used_cursor_scale * cursor_size_multiplier
+	print(DisplayServer.screen_get_size())
 
 const mouse_cursor_height = 16
 const taskbar_height = 46

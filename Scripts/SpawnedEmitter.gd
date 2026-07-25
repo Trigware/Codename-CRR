@@ -14,7 +14,7 @@ const circle_appear_duration = 0.75
 func _ready():
 	show_ring(ring_texture)
 	show_ring(ring_shadow)
-	handle_segment_ending()
+	handle_segment_ending(true)
 	if is_factory: hide()
 	handle_particle_emissions()
 
@@ -39,6 +39,7 @@ func _process(delta: float):
 	
 	var bottom_right_edge = monitor_size - scale * ring_size
 	position = bottom_right_edge * relative_position
+	time_since_emitter_spawned += delta
 	move_projectile_emitter(delta)
 
 var direction_index: int = 3
@@ -69,21 +70,34 @@ func move_projectile_emitter(delta: float):
 	relative_position += move_direction * move_delta
 
 const maximum_emitter_count = 4
+var amount_of_segment_endings = 0
+const emitter_origin_offset = 40
+const segment_ending_count_to_spawn_emitter = [0, 2, 5, 11]
 
-func handle_segment_ending():
+func handle_segment_ending(forced_spawn = false):
 	direction_index = (direction_index + 1) % move_directions_arr.size()
 	if not is_factory or emitters_spawned >= maximum_emitter_count: return
 	
+	if not forced_spawn: amount_of_segment_endings += 1
+	var segment_ending_count_to_spawn = segment_ending_count_to_spawn_emitter[emitters_spawned]
+	var valid_segment_ending = segment_ending_count_to_spawn == amount_of_segment_endings
+	if not valid_segment_ending and not forced_spawn: return
+	
 	emitters_spawned += 1
 	var spawned_emitter = UID.SCN_SPAWNED_EMITTER.instantiate()
-	spawned_emitter.setup(projectile_transform_node, boss_projectiles, mouse_cursor)
+	var emitter_origin = Node2D.new()
+	emitter_origin.position = Vector2.ONE * emitter_origin_offset
+	spawned_emitter.add_child(emitter_origin)
+	
+	spawned_emitter.setup(emitter_origin, boss_projectiles, mouse_cursor)
 	spawned_emitter.leaf_boss_handlerer = leaf_boss_handlerer
+	spawned_emitter.angle_diff_duration_multiplier = 1.0 / emitters_spawned
 	boss_projectiles.add_child(spawned_emitter)
 	spawned_emitter.ring_texture.material = ring_texture.material.duplicate()
 	spawned_emitter.ring_shadow.material = ring_shadow.material.duplicate()
 
-const minimum_particle_emission_wait_time = 1.5
-const maximum_particle_emission_wait_time = 2.85
+const minimum_particle_emission_wait_time = 2.35
+const maximum_particle_emission_wait_time = 3.75
 
 const inner_circle_radius_charge_final = 0.15
 const outer_circle_radius_charge_final = 0.35

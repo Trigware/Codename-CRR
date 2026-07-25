@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-const int tile_array_count = 256;
+const int digit_array_count = 256;
 
 uniform vec2 pixel_count = vec2(1000, 1000);
 uniform vec2 texture_size;
@@ -14,7 +14,7 @@ uniform sampler2D base_texture: filter_nearest;
 uniform float texture_progress;
 uniform float alpha_modulate = 1.0;
 uniform float tile_size;
-uniform bool[tile_array_count] empty_tiles;
+uniform bool[digit_array_count] empty_tiles;
 uniform bool circle_filter_enabled;
 uniform float outer_circle_radius;
 uniform float inner_circle_radius;
@@ -69,7 +69,7 @@ void fragment() {
 	ivec2 tile_pos = ivec2(int(UV.x / tile_size), y_tile_pos);
 	int tile_x_count = int(ceil(1.0 / tile_size));
 	int tile_index = tile_pos.y * tile_x_count + tile_pos.x;
-	int normalized_tile_index = tile_index % tile_array_count;
+	int normalized_tile_index = tile_index % digit_array_count;
 	bool is_tile_empty = empty_tiles[normalized_tile_index];
 	if (is_tile_empty) used_color.a = 0.0;
 	
