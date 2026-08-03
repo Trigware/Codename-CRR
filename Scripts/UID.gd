@@ -16,9 +16,11 @@ const SFX_EXPLOSION = preload("uid://detethn63ptps")
 const IMG_FRAGTEX_LOGO = preload("uid://bbabfl0jbc3jr")
 
 const SCN_WINDOW_POPUP = preload("uid://csxmjbgod123e")
-const SCN_UI_PROJECTILE = preload("uid://gb4kkg3wxfy")
+const SCN_DIRECTED_PROJECTILE = preload("uid://7la86rvqnbme")
 const SCN_EXPLOSION = preload("uid://b6tuxk7jwp8wj")
 const SCN_SPAWNED_EMITTER = preload("uid://dg0q5p68r5rna")
+const SCN_PROJECTILE_WARNING = preload("uid://ifagqr77ctkv")
+const SCN_CIRCLE_PROJECTILE = preload("uid://dalabol3t5h3b")
 
 const SHD_PROJECTILE_GLITCHING = preload("uid://c1pfplxjs7bje")
 const SHD_SPAWNED_EMITTER = preload("uid://duqyjb1k0p5is")

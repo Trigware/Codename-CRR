@@ -1,54 +1,78 @@
 @tool
 class_name MemoryField
-extends ColorRect
+extends TiledDiagonals
 
-enum UniformType {
-	BackgroundColor,
+enum MemoryFieldUniform {
 	OutlineColor,
+	GlyphModulate,
 	MemoryFieldSpritesheet,
 	RectPositionArray,
 	RectSizeArray,
 	RectRotationRadArray,
 	RectOutlineSizeArray,
+	CirclePositionArray,
+	CircleRadiusArray,
 	TextureSize,
 	GlyphsPerAxis,
 	DigitTileArray,
-	GlyphScale
+	GlyphScale,
+	GlyphOffset
 }
 
-@export var background_color: Color:
-	set(value): background_color = value; set_uniform(UniformType.BackgroundColor, value)
-@export var outline_color: Color:
-	set(value): outline_color = value; set_uniform(UniformType.OutlineColor, value)
-@export var memory_field_spritesheet: Texture2D:
-	set(value): memory_field_spritesheet = value; set_uniform(UniformType.MemoryFieldSpritesheet, value)
-@export var glyphs_per_axis: float = 1:
-	set(value): glyphs_per_axis = value; set_uniform(UniformType.GlyphsPerAxis, value)
+@export var outline_color: Color
+@export var glyph_modulate: Color
+@export var memory_field_spritesheet: Texture2D
+@export var glyphs_per_axis: float = 1
 @export var rect_array: Array[MemoryFieldRect]
+@export var circle_array: Array[MemoryFieldCircle]
 @export var memory_digits_time_to_reset: float
-@export var glyph_scale: float = 1:
-	set(value): glyph_scale = value; set_uniform(UniformType.GlyphScale, value)
+@export var glyph_scale: float = 1
+@export var glyph_offset: Vector2
 
-func uniform_as_str(uniform: UniformType) -> String: return UniformType.keys()[uniform].to_snake_case()
-func set_uniform(parameter: UniformType, value): material.set_shader_parameter(uniform_as_str(parameter), value)
+func mem_uniform_as_str(uniform: MemoryFieldUniform) -> String: return MemoryFieldUniform.keys()[uniform].to_snake_case()
+func mem_set_uniform(parameter: MemoryFieldUniform, value): material.set_shader_parameter(mem_uniform_as_str(parameter), value)
 
-func _process(_delta):
-	set_uniform(UniformType.TextureSize, size)
+func _ready():
+	update_visibility_changing_array()
+
+func _process(delta: float):
+	update_field_values()
 	handle_memory_digits_timer()
-	if Engine.is_editor_hint(): update_rect_array()
+	update_visibility_changing_array()
+	super(delta)
 
-func update_rect_array():
+func update_field_values():
+	mem_set_uniform(MemoryFieldUniform.TextureSize, size)
+	mem_set_uniform(MemoryFieldUniform.OutlineColor, outline_color)
+	mem_set_uniform(MemoryFieldUniform.GlyphModulate, glyph_modulate)
+	mem_set_uniform(MemoryFieldUniform.MemoryFieldSpritesheet, memory_field_spritesheet)
+	mem_set_uniform(MemoryFieldUniform.GlyphsPerAxis, glyphs_per_axis)
+	mem_set_uniform(MemoryFieldUniform.GlyphScale, glyph_scale)
+	mem_set_uniform(MemoryFieldUniform.GlyphOffset, glyph_offset)
+
+func update_visibility_changing_array():
 	var rect_position_array = []; var rect_size_array = []; var rect_rotation_rad_array = []; var rect_outline_size_array = []
-	for memory_field_rect: MemoryFieldRect in rect_array:
+	var circle_position_array = []; var circle_radius_array = []
+	
+	for memory_field_rect in rect_array:
+		if not memory_field_rect is MemoryFieldRect: continue
 		rect_position_array.append(memory_field_rect.rect.position)
 		rect_size_array.append(memory_field_rect.rect.size)
 		rect_rotation_rad_array.append(memory_field_rect.rotation_radians)
 		rect_outline_size_array.append(memory_field_rect.outline_thickness)
 	
-	set_uniform(UniformType.RectPositionArray, rect_position_array)
-	set_uniform(UniformType.RectSizeArray, rect_size_array)
-	set_uniform(UniformType.RectRotationRadArray, rect_rotation_rad_array)
-	set_uniform(UniformType.RectOutlineSizeArray, rect_outline_size_array)
+	for memory_field_circle in circle_array:
+		if not memory_field_circle is MemoryFieldCircle: continue
+		circle_position_array.append(memory_field_circle.position)
+		circle_radius_array.append(memory_field_circle.radius)
+	
+	mem_set_uniform(MemoryFieldUniform.RectPositionArray, rect_position_array)
+	mem_set_uniform(MemoryFieldUniform.RectSizeArray, rect_size_array)
+	mem_set_uniform(MemoryFieldUniform.RectRotationRadArray, rect_rotation_rad_array)
+	mem_set_uniform(MemoryFieldUniform.RectOutlineSizeArray, rect_outline_size_array)
+	
+	mem_set_uniform(MemoryFieldUniform.CirclePositionArray, circle_position_array)
+	mem_set_uniform(MemoryFieldUniform.CircleRadiusArray, circle_radius_array)
 
 var previous_time_section : float = -1
 
@@ -62,11 +86,11 @@ func handle_memory_digits_timer():
 	handle_memory_digits_reset()
 
 const digit_array_count = 256
-const hex_numeral_count = 16
+const hex_numeral_count = 2
 
 func handle_memory_digits_reset():
 	var digit_tile_array = []
 	for i in range(digit_array_count):
 		var tile_numeral = randi_range(0, hex_numeral_count - 1)
 		digit_tile_array.append(tile_numeral)
-	set_uniform(UniformType.DigitTileArray, digit_tile_array)
+	mem_set_uniform(MemoryFieldUniform.DigitTileArray, digit_tile_array)

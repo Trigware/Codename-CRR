@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://gb4kkg3wxfy"]
 
 [ext_resource type="Texture2D" uid="uid://ddagrou3dfcn3" path="res://Textures/UI Cursors.png" id="1_7fpta"]
-[ext_resource type="Script" uid="uid://c3sofro71h6t8" path="res://Scripts/UIProjectile.gd" id="1_beagf"]
+[ext_resource type="Script" uid="uid://ycun3ucel8wd" path="res://Scripts/UIProjectile.gd" id="1_khd7q"]
 [ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="3_grdkm"]
 [ext_resource type="Texture2D" uid="uid://do7eaeam32agw" path="res://Textures/MissingTexture.png" id="4_fw3vg"]
 [ext_resource type="Material" uid="uid://c1pfplxjs7bje" path="res://Shaders/ProjectileGlitching.tres" id="4_khd7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fpta"]
-size = Vector2(16, 16)
+size = Vector2(21, 23)
 
-[node name="UI Projectile" type="Area2D" unique_id=2066970462]
-script = ExtResource("1_beagf")
+[node name="UI Projectile" type="Area2D" unique_id=2066970462 groups=["UIProjectile"]]
+script = ExtResource("1_khd7q")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=206375661]
 modulate = Color(0, 0, 0, 1)
@@ -25,7 +25,6 @@ hframes = 8
 frame = 4
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=597467836]
-visible = false
 shape = SubResource("RectangleShape2D_7fpta")
 
 [node name="Missing Texture" parent="." unique_id=279757855 instance=ExtResource("3_grdkm")]
@@ -35,6 +34,7 @@ offset_top = -8.0
 offset_right = 9.0
 offset_bottom = 9.0
 line_color = Color(1, 1, 1, 1)
+value_offset = 0.385
 pattern_speed = 0.12
 position_offset = Vector2(-8, -8)
 base_texture = ExtResource("4_fw3vg")

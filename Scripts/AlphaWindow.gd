@@ -12,17 +12,16 @@ const init_window_position = Vector2(0, 32)
 var is_root_fullscreen = false
 
 func _ready():
+	ProjectileEmitter.projectile_fire_count = 0
 	bounds_window.leaf_resize_end.connect(on_leaf_resize_end)
 	mouse_texture.texture_progress = 1
 	bounds_window.animated_logo.skip_enabled = skip_enabled
 	boss_leaf.mouse_scaled.connect(on_mouse_scaled)
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	var monitor_size = DisplayServer.screen_get_size()
 	alpha_window.size = monitor_size
 	var cursor_size_multiplier = monitor_size.y / base_monitor_height
 	mouse_cursor.scale = Vector2.ONE * used_cursor_scale * cursor_size_multiplier
-	print(DisplayServer.screen_get_size())
 
 const mouse_cursor_height = 16
 const taskbar_height = 46
@@ -37,6 +36,7 @@ const base_monitor_height: float = 1200
 var used_cursor_scale = 1.5
 
 func _process(delta: float):
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	var intended_window_mode = Window.MODE_FULLSCREEN if is_root_fullscreen else Window.MODE_MINIMIZED
 	if alpha_window.mode != intended_window_mode: alpha_window.mode = intended_window_mode
 	if Input.is_action_just_pressed("quit_game"): get_tree().quit()
@@ -71,6 +71,7 @@ func _input(event):
 	var mouse_pos_change = motion_event.relative
 	if not cursor_interactable: return
 	mouse_cursor.position += mouse_pos_change
+	handle_hitting_monitor_bounds()
 	
 	var has_hit_now = has_hit_window_bounds_now()
 	if not has_hit_now: return
@@ -89,6 +90,16 @@ func has_hit_window_bounds_now():
 	var has_hit_now = hit_window_bounds and not previously_hit_bounds
 	previously_hit_bounds = hit_window_bounds
 	return has_hit_now
+
+func handle_hitting_monitor_bounds():
+	var screen_size = DisplayServer.screen_get_size()
+	var mouse_pos = mouse_cursor.position
+	var cursor_size = mouse_cursor.cursor_size
+	var screen_bounds = Vector2(screen_size) - cursor_size
+	if mouse_pos.x < 0: mouse_cursor.position.x = 0
+	if mouse_pos.y < 0: mouse_cursor.position.y = 0
+	if mouse_pos.x > screen_bounds.x: mouse_cursor.position.x = screen_bounds.x
+	if mouse_pos.y > screen_bounds.y: mouse_cursor.position.y = screen_bounds.y
 
 enum MouseEvent {
 	None,
@@ -175,7 +186,6 @@ func on_mouse_scaled():
 		OS.alert("Initializing cursor capture protol!", "Fragmented Vertex Protocol")
 	
 	var mouse_position = get_local_mouse_position()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_cursor.show()
 	mouse_cursor.position = mouse_position
 	boss_leaf.start_boss()

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://7la86rvqnbme"]
+
+[ext_resource type="Script" uid="uid://c3sofro71h6t8" path="res://Scripts/DirectedProjectile.gd" id="1_evywc"]
+[ext_resource type="PackedScene" uid="uid://gb4kkg3wxfy" path="res://Scenes/UIProjectile.tscn" id="1_nosm3"]
+
+[node name="Directed Projectile" unique_id=2066970462 instance=ExtResource("1_nosm3")]
+script = ExtResource("1_evywc")

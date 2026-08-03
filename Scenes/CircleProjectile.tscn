@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dalabol3t5h3b"]
+
+[ext_resource type="PackedScene" uid="uid://7la86rvqnbme" path="res://Scenes/DirectedProjectile.tscn" id="1_qqfsy"]
+[ext_resource type="Texture2D" uid="uid://bvtnn7kijx1ck" path="res://Textures/Folder.png" id="2_av73e"]
+[ext_resource type="Script" uid="uid://7vnlkb5jh0qy" path="res://Scripts/CircleProjectile.gd" id="2_l0lm5"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="3_l0lm5"]
+
+[node name="Circle Projectile" unique_id=2066970462 instance=ExtResource("1_qqfsy")]
+script = ExtResource("2_l0lm5")
+
+[node name="Shadow" parent="." index="0" unique_id=206375661]
+texture = ExtResource("2_av73e")
+hframes = 1
+frame = 0
+
+[node name="Sprite" parent="." index="1" unique_id=1845788221]
+texture = ExtResource("2_av73e")
+hframes = 1
+frame = 0
+
+[node name="Collider" parent="." index="2" unique_id=597467836]
+visible = false
+position = Vector2(0.5, -0.5)
+
+[node name="Missing Texture" parent="." index="3" unique_id=279757855]
+offset_left = -9.975
+offset_top = -12.96
+offset_right = 10.892767
+offset_bottom = 14.011977
+position_offset = Vector2(-9.975, -12.96)
+tile_size = 0.225
+
+[node name="Folder Name" type="Label" parent="." index="4" unique_id=1011577799]
+offset_left = -143.0
+offset_top = 15.0
+offset_right = 308.9685
+offset_bottom = 36.429
+scale = Vector2(0.635, 0.635)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_l0lm5")
+theme_override_font_sizes/font_size = 16
+text = "SAMPLE NAME"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -4,21 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://blcvhwty6uhhq" path="res://Scenes/BoundsWindow.tscn" id="2_v47m1"]
 [ext_resource type="PackedScene" uid="uid://bkp4oc1oxdrjl" path="res://Scenes/Cursor.tscn" id="3_j0q46"]
 [ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="4_q7hp2"]
+[ext_resource type="PackedScene" uid="uid://br61pt68x1ijp" path="res://Scenes/BossMemoryField.tscn" id="5_fk3dw"]
 [ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="5_x5lk5"]
 [ext_resource type="PackedScene" uid="uid://detyxrac88rkp" path="res://Scenes/BossLeaf.tscn" id="6_rdjoi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x5lk5"]
 shader = ExtResource("5_x5lk5")
 shader_parameter/pixel_count = Vector2(1000, 1000)
-shader_parameter/texture_size = Vector2(1.0595698, 1.5817047)
+shader_parameter/texture_size = Vector2(1.25, 1.25)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 0.5
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 34.158367499999144
+shader_parameter/pattern_repeated = 152.95723150001604
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
 shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
 shader_parameter/tile_size = 0.1
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = false
@@ -26,7 +28,6 @@ shader_parameter/outer_circle_radius = 0.0
 shader_parameter/inner_circle_radius = 0.0
 shader_parameter/highlight_circle_radius_offset = 0.0
 shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
-shader_parameter/is_shadow = false
 
 [node name="AlphaWindow" type="Node2D" unique_id=1367662212]
 script = ExtResource("1_0kypy")
@@ -40,6 +41,10 @@ material = SubResource("ShaderMaterial_x5lk5")
 diagonal_lines = 0.5
 pattern_speed = 1.5
 empty_tiles_change_duration = 0.25
+
+[node name="Boss Memory Field" parent="." unique_id=3358750 instance=ExtResource("5_fk3dw")]
+offset_right = 1920.0
+offset_bottom = 1200.0
 
 [node name="Boss Leaf" parent="." unique_id=1512060177 instance=ExtResource("6_rdjoi")]
 

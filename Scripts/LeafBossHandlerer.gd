@@ -3,32 +3,72 @@ extends ProjectileEmitter
 
 @onready var skip_enabled: bool
 @onready var leaf_root: LeafBossRoot = get_parent()
+@onready var alpha_window: AlphaWindowHandleler = leaf_root.get_parent()
+@onready var boss_memory_field: BossMemoryField = alpha_window.get_node("Boss Memory Field")
+var spawned_emitter_arr: Array[SpawnedEmitter]
 
 func _ready():
 	await Help.wait_frame()
 	projectile_transform_node = leaf_root
 	mouse_cursor = leaf_root.mouse_cursor
 	boss_projectiles = leaf_root.get_parent().get_node("Boss Projectiles")
+	boss_memory_field.created_memory_field.connect(handle_circle_projectile_firing)
 
 const leaf_start_fire_projectile = 0.175
+const leaf_move_to_center_duration: float = 4
 
 func start_boss():
 	await show_ring()
 	projectile_speed = leaf_start_fire_projectile
 	fire_projectile_ring()
 	var monitor_size = DisplayServer.screen_get_size()
-	Help.tween(leaf_root, "position:y", monitor_size.y / 2, 4)
-	await Help.wait(1.5)
+	var used_move_to_center_duration = 0 if alpha_window.skip_enabled else leaf_move_to_center_duration
+	Help.tween(leaf_root, "position:y", monitor_size.y / 2, used_move_to_center_duration)
 	spawn_emitter_factory()
+	is_spawning_ui_projectiles = true
+
+const leaf_move_for_memory_field_duration: float = 4
+const leaf_ring_radius = 40
+const leaf_destination_height_portion: float = 0.15
+
+var time_since_projectile_started_spawning: float = 0
+var is_spawning_ui_projectiles: bool = false
+const minimum_emission_multiplier: float = 0.75
+var emission_multiplier_progress: float = 0
+
+func _process(delta: float):
+	if not is_spawning_ui_projectiles: return
+	
+	var used_despawn_time = 0.0 if alpha_window.skip_enabled else time_until_projectiles_despawn
+	time_since_projectile_started_spawning += delta
+	if time_since_projectile_started_spawning > used_despawn_time:
+		despawn_projectile_emitters()
+		is_spawning_ui_projectiles = false
+		leaf_root.boss_memory_field.create_projectile_warnings()
+		return
+		
+	var projectile_summon_progression = time_since_projectile_started_spawning / used_despawn_time
+	emission_multiplier_progress += delta / time_until_minimal_emission_multiplier
+	current_particle_emission_timer_multiplier = lerp(1.0, minimum_emission_multiplier, emission_multiplier_progress)
+	current_moving_ring_speed = lerp(init_moving_ring_speed, maximum_moving_ring_speed, projectile_summon_progression)
+
+const time_until_projectiles_despawn: float = 18
+var emitter_spawning_disabled = false
+
+func despawn_projectile_emitters():
+	for spawned_emitter: SpawnedEmitter in spawned_emitter_arr:
+		spawned_emitter.to_be_despawned = true
+	emitter_spawning_disabled = true
 
 const ring_show_tween_duration = 1.1
 const final_ring_size = 1.15
 const base_ring_radius = 40
 const init_moving_ring_speed = 0.4
-const init_particle_emission_timer_multiplier: float = 1
+const maximum_moving_ring_speed = 0.65
+const time_until_minimal_emission_multiplier = 18
 
 var current_moving_ring_speed = init_moving_ring_speed
-var current_particle_emission_timer_multiplier = init_particle_emission_timer_multiplier
+var current_particle_emission_timer_multiplier = 1
 
 func show_ring():
 	var used_ring_show_duration = 0.0 if skip_enabled else ring_show_tween_duration
@@ -50,3 +90,62 @@ func spawn_emitter_factory():
 	spawned_particle_emitter.is_factory = true
 	spawned_particle_emitter.leaf_boss_handlerer = self
 	boss_projectiles.add_child(spawned_particle_emitter)
+
+const minimum_fire_wait_duration: float = 3.25
+const maximum_fire_wait_duration: float = 4.5
+
+func handle_circle_projectile_firing():
+	fire_circle_projectile_set()
+	#create_additional_memory_field_rects()
+	while true:
+		var fire_wait_duration = randf_range(minimum_fire_wait_duration, maximum_fire_wait_duration)
+		await Help.wait(fire_wait_duration)
+		fire_circle_projectile_set()
+
+const wait_time_for_additional_memory_rect_creation = 5
+
+func create_additional_memory_field_rects():
+	await Help.wait(wait_time_for_additional_memory_rect_creation)
+	boss_memory_field.create_projectile_warnings()
+
+const circle_projectiles_in_set = 6
+const circle_projectile_spawn_distance_portion = 0.415
+const circle_projectile_scale_multiplier = 0.485
+const skipped_projectile_count = 0
+
+func generate_skipped_projectile_array() -> Array:
+	if skipped_projectile_count > circle_projectiles_in_set: return []
+	
+	var skipped_projectile_array = []
+	for i in range(skipped_projectile_count):
+		var random_skipped_projectile = -1
+		while true:
+			random_skipped_projectile = randi_range(0, circle_projectiles_in_set - 1)
+			if not random_skipped_projectile in skipped_projectile_array: break
+		skipped_projectile_array.append(random_skipped_projectile)
+	
+	return skipped_projectile_array
+
+func fire_circle_projectile_set():
+	var one_projectile_angle_range = TAU / circle_projectiles_in_set
+	var projectile_offset = randf_range(0, one_projectile_angle_range)
+	var skipped_projectile_array = generate_skipped_projectile_array()
+	
+	for i in range(circle_projectiles_in_set):
+		if i in skipped_projectile_array: continue
+		var circle_projectile = UID.SCN_CIRCLE_PROJECTILE.instantiate()
+		circle_projectile.global_transform = projectile_transform_node.global_transform
+		circle_projectile.scale *= circle_projectile_scale_multiplier
+		circle_projectile.global_position = mouse_cursor.global_position
+		
+		var projectile_angle = one_projectile_angle_range * i
+		projectile_angle += projectile_offset
+		var screen_size = DisplayServer.screen_get_size()
+		var circle_projectile_spawn_distance = min(screen_size.x, screen_size.y) * circle_projectile_spawn_distance_portion
+		var circle_projectile_offset = Vector2.from_angle(projectile_angle) * circle_projectile_spawn_distance
+		
+		circle_projectile.position += circle_projectile_offset
+		circle_projectile.movement_angle = projectile_angle + PI
+		circle_projectile.original_distance_from_cursor = circle_projectile_spawn_distance
+		circle_projectile.angle_dir = 0
+		boss_projectiles.add_child(circle_projectile)

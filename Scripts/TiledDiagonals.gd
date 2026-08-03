@@ -15,6 +15,7 @@ enum UniformType {
 	BaseTexture,
 	TextureProgress,
 	AlphaModulate,
+	IsShadow,
 	TileSize,
 	EmptyTiles,
 	CircleFilterEnabled,
@@ -22,22 +23,21 @@ enum UniformType {
 	InnerCircleRadius,
 	HighlightCircleRadiusOffset,
 	HighlightedCircleModulate,
-	IsShadow
 }
 
-@export var diagonal_lines: float:
+@export var diagonal_lines: float = 20.0:
 	set(value): diagonal_lines = value; set_uniform(UniformType.DiagonalLines, value)
-@export_range(0, 1) var gap_size: float:
+@export_range(0, 1) var gap_size: float = 0.5:
 	set(value): gap_size = value; set_uniform(UniformType.GapSize, value)
 var pattern_repeated: float = 0:
 	set(value): pattern_repeated = value; set_uniform(UniformType.PatternRepeated, value)
-@export var line_color: Color
-@export var pixel_count: Vector2i:
+@export var line_color: Color = Color("7a4040")
+@export var pixel_count: Vector2i = Vector2i(1024, 1024):
 	set(value): pixel_count = value; set_uniform(UniformType.PixelCount, value)
-@export var texture_scale: Vector2
+@export var texture_scale: Vector2 = Vector2.ONE
 @export var rotation_repeated: float:
 	set(value): rotation_repeated = value; set_uniform(UniformType.RotationRepeated, value)
-@export var value_offset: float
+@export var value_offset: float = 0.085
 @export var pattern_speed: float
 @export var position_offset: Vector2
 @export var base_texture: Texture:

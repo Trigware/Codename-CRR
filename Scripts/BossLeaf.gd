@@ -13,6 +13,7 @@ const leaf_size = Vector2(20, 20)
 @onready var ring_shadow = $RingShadow
 @onready var ring_texture = $Ring
 @onready var boss_handlerer = $"Boss Handlerer"
+@onready var boss_memory_field: BossMemoryField = get_parent().get_node("Boss Memory Field")
 
 var bounds_window: Window
 var ring_alpha_modulate: float = 0

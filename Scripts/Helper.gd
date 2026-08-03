@@ -6,8 +6,8 @@ func wait(duration: float):
 func tween_alpha(object, final: float, duration: float):
 	await tween_linear(object, "modulate:a", final, duration)
 
-func tween_hide(object, duration: float): await tween_alpha(object, duration, 0)
-func tween_show(object, duration: float): await tween_alpha(object, duration, 1)
+func tween_hide(object, duration: float): await tween_alpha(object, 0.0, duration)
+func tween_show(object, duration: float): await tween_alpha(object, 1.0, duration)
 
 func tween(object, property: NodePath, final, duration: float, ease_type = Tween.EASE_IN_OUT, trans_type = Tween.TRANS_QUAD):
 	await create_tween().tween_property(object, property, final, duration).\
@@ -71,3 +71,6 @@ func get_glitching_tween_duration(index, amount_of_cursor_movements, miminum_mov
 	return tween_duration
 
 func pyth(x: float, y: float): return sqrt(x ** 2 + y ** 2)
+
+func lg(base: float, antilogatithm: float):
+	return log(antilogatithm) / log(base)

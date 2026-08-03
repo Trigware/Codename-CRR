@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://ifagqr77ctkv"]
+
+[ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="1_aeanb"]
+[ext_resource type="Script" uid="uid://covc4c6xct0vc" path="res://Scripts/ProjectileWarning.gd" id="1_nhh12"]
+[ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="2_lav8u"]
+[ext_resource type="Texture2D" uid="uid://csofjus7ffyy4" path="res://Textures/ProjectileWarning.png" id="3_nhh12"]
+[ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="4_lav8u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cxy5"]
+shader = ExtResource("2_lav8u")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(0.75, 0.75)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 4.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 121.45908804994559
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/texture_progress = 0.0
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
+shader_parameter/tile_size = 0.0
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
+
+[node name="Projectile Warning" type="Node2D" unique_id=655227204]
+scale = Vector2(6, 6)
+script = ExtResource("1_nhh12")
+projectile_warning_color_begin = Color(0.6, 0.29411766, 0.29411766, 1)
+projectile_warning_color_end = Color(0.7, 0.65239996, 0.343, 1)
+
+[node name="Screen" parent="." unique_id=279757855 instance=ExtResource("1_aeanb")]
+material = SubResource("ShaderMaterial_1cxy5")
+offset_left = 1.0
+offset_right = 31.0
+offset_bottom = 30.0
+diagonal_lines = 4.0
+line_color = Color(0.2, 0.2, 0.2, 1)
+value_offset = 0.055
+pattern_speed = 0.225
+position_offset = Vector2(1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=793326216]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(17, 17)
+texture = ExtResource("3_nhh12")
+hframes = 2
+frame = 1
+
+[node name="Warning" type="Sprite2D" parent="." unique_id=165274676]
+modulate = Color(0.6, 0.29411766, 0.29411766, 1)
+texture = ExtResource("3_nhh12")
+centered = false
+hframes = 2
+
+[node name="Avoid Title" type="Label" parent="." unique_id=756787967]
+modulate = Color(0.6, 0.29411766, 0.29411766, 1)
+offset_left = -69.0
+offset_top = 32.0
+offset_right = 198.69232
+offset_bottom = 52.0
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("4_lav8u")
+theme_override_font_sizes/font_size = 20
+text = "Avoid"
+horizontal_alignment = 1

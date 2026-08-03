@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="1_6qa2i"]
 [ext_resource type="Texture2D" uid="uid://ye3xlqm7vgaf" path="res://Textures/MouseCursor.png" id="2_6qa2i"]
 [ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="3_6qa2i"]
+[ext_resource type="Script" uid="uid://cqooehmadnmcd" path="res://Scripts/MouseCursor.gd" id="3_8pq3g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qa2i"]
 shader = ExtResource("1_6qa2i")
@@ -17,6 +18,7 @@ shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/base_texture = ExtResource("2_6qa2i")
 shader_parameter/texture_progress = 1.0
 shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
 shader_parameter/tile_size = 0.0
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = false
@@ -38,6 +40,7 @@ shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/base_texture = ExtResource("2_6qa2i")
 shader_parameter/texture_progress = 1.0
 shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
 shader_parameter/tile_size = 0.1
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = false
@@ -46,10 +49,14 @@ shader_parameter/inner_circle_radius = 0.0
 shader_parameter/highlight_circle_radius_offset = 0.0
 shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
 
-[node name="Cursor" type="Node2D" unique_id=1892576167]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pq3g"]
+size = Vector2(11.999548, 14.000288)
+
+[node name="Cursor" type="Area2D" unique_id=1322290303]
 material = SubResource("ShaderMaterial_6qa2i")
 rotation = -5.410683e-05
 scale = Vector2(1.5, 1.5)
+script = ExtResource("3_8pq3g")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1485388977]
 modulate = Color(0, 0, 0, 1)
@@ -64,4 +71,7 @@ material = SubResource("ShaderMaterial_8pq3g")
 offset_right = 12.0
 offset_bottom = 16.0
 base_texture = ExtResource("2_6qa2i")
-empty_tiles_rate = 0.0
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1151660722]
+position = Vector2(5.9993243, 9.6671715)
+shape = SubResource("RectangleShape2D_8pq3g")

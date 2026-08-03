@@ -40,7 +40,8 @@ func _process(delta: float):
 	var bottom_right_edge = monitor_size - scale * ring_size
 	position = bottom_right_edge * relative_position
 	time_since_emitter_spawned += delta
-	move_projectile_emitter(delta)
+	if emitter_is_despawning: move_projectile_emitter_on_despawn(delta)
+	else: move_projectile_emitter(delta)
 
 var direction_index: int = 3
 var is_factory: bool = false
@@ -75,6 +76,7 @@ const emitter_origin_offset = 40
 const segment_ending_count_to_spawn_emitter = [0, 2, 5, 11]
 
 func handle_segment_ending(forced_spawn = false):
+	if to_be_despawned: emitter_is_despawning = true
 	direction_index = (direction_index + 1) % move_directions_arr.size()
 	if not is_factory or emitters_spawned >= maximum_emitter_count: return
 	
@@ -82,10 +84,12 @@ func handle_segment_ending(forced_spawn = false):
 	var segment_ending_count_to_spawn = segment_ending_count_to_spawn_emitter[emitters_spawned]
 	var valid_segment_ending = segment_ending_count_to_spawn == amount_of_segment_endings
 	if not valid_segment_ending and not forced_spawn: return
+	if leaf_boss_handlerer.emitter_spawning_disabled: return
 	
 	emitters_spawned += 1
 	var spawned_emitter = UID.SCN_SPAWNED_EMITTER.instantiate()
 	var emitter_origin = Node2D.new()
+	leaf_boss_handlerer.spawned_emitter_arr.append(spawned_emitter)
 	emitter_origin.position = Vector2.ONE * emitter_origin_offset
 	spawned_emitter.add_child(emitter_origin)
 	
@@ -96,8 +100,8 @@ func handle_segment_ending(forced_spawn = false):
 	spawned_emitter.ring_texture.material = ring_texture.material.duplicate()
 	spawned_emitter.ring_shadow.material = ring_shadow.material.duplicate()
 
-const minimum_particle_emission_wait_time = 2.35
-const maximum_particle_emission_wait_time = 3.75
+const minimum_particle_emission_wait_time = 2.85
+const maximum_particle_emission_wait_time = 3.8
 
 const inner_circle_radius_charge_final = 0.15
 const outer_circle_radius_charge_final = 0.35
@@ -122,5 +126,18 @@ func handle_particle_emissions():
 	charge_ring(ring_texture)
 	charge_ring(ring_shadow)
 	await ring_charged
+	if emitter_is_despawning: return
 	fire_projectile_ring()
 	handle_particle_emissions()
+
+var to_be_despawned: bool = false
+var emitter_is_despawning = false
+const despawn_emitter_speed: float = 0.3
+var despawn_speed_progress: float = 0.0
+
+const despawn_emitter_direction_arr: Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
+
+func move_projectile_emitter_on_despawn(delta: float):
+	var despawn_emitter_direction = despawn_emitter_direction_arr[direction_index]
+	despawn_speed_progress = min(despawn_speed_progress + delta, 1)
+	relative_position += despawn_emitter_direction * despawn_emitter_speed * despawn_speed_progress * delta

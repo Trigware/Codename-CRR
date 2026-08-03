@@ -7,28 +7,6 @@
 [ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="5_i3xnt"]
 [ext_resource type="Script" uid="uid://7xff5if4c11r" path="res://Scripts/LeafBossHandlerer.gd" id="7_sg2ww"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg2ww"]
-shader = ExtResource("5_i3xnt")
-shader_parameter/pixel_count = Vector2(1000, 1000)
-shader_parameter/texture_size = Vector2(1.25, 1.25)
-shader_parameter/texture_scale = Vector2(1, 1)
-shader_parameter/diagonal_lines = 8.0
-shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 143.22393479999334
-shader_parameter/line_color = Vector4(0, 0, 0, 0)
-shader_parameter/gap_color = Vector4(0, 0, 0, 0)
-shader_parameter/base_texture = ExtResource("4_6i3ph")
-shader_parameter/texture_progress = 1.0
-shader_parameter/alpha_modulate = 1.0
-shader_parameter/tile_size = 0.1
-shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-shader_parameter/circle_filter_enabled = false
-shader_parameter/outer_circle_radius = 0.5
-shader_parameter/inner_circle_radius = 0.45
-shader_parameter/highlight_circle_radius_offset = 0.0
-shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
-shader_parameter/is_shadow = false
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3xnt"]
 shader = ExtResource("5_i3xnt")
 shader_parameter/pixel_count = Vector2(1000, 1000)
@@ -41,6 +19,7 @@ shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
 shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = true
 shader_parameter/tile_size = 0.1
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = true
@@ -48,7 +27,28 @@ shader_parameter/outer_circle_radius = 0.5
 shader_parameter/inner_circle_radius = 0.385
 shader_parameter/highlight_circle_radius_offset = 0.04
 shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
-shader_parameter/is_shadow = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg2ww"]
+shader = ExtResource("5_i3xnt")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(1.25, 1.25)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 8.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 868.9552222327204
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("4_6i3ph")
+shader_parameter/texture_progress = 1.0
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
+shader_parameter/tile_size = 0.1
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fy10u"]
 shader = ExtResource("5_i3xnt")
@@ -62,6 +62,7 @@ shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
 shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
 shader_parameter/tile_size = 0.0
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = true
@@ -69,7 +70,6 @@ shader_parameter/outer_circle_radius = 0.5
 shader_parameter/inner_circle_radius = 0.385
 shader_parameter/highlight_circle_radius_offset = 0.04
 shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
-shader_parameter/is_shadow = false
 
 [node name="Boss Leaf" type="Node2D" unique_id=1512060177]
 script = ExtResource("1_mxent")
@@ -80,6 +80,21 @@ position = Vector2(2, 3)
 texture = ExtResource("1_hat3o")
 hframes = 5
 frame = 4
+
+[node name="RingShadow" parent="." unique_id=899718494 instance=ExtResource("3_uipbx")]
+material = SubResource("ShaderMaterial_i3xnt")
+offset_left = -35.13
+offset_top = -37.0
+offset_right = 44.87
+offset_bottom = 43.0
+pivot_offset = Vector2(40, 40)
+diagonal_lines = 4.0
+value_offset = 0.035
+position_offset = Vector2(-35.13, -37)
+inner_circle_radius = 0.385
+highlight_circle_radius_offset = 0.04
+highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)
+is_shadow = true
 
 [node name="Leaf" parent="." unique_id=279757855 instance=ExtResource("3_uipbx")]
 material = SubResource("ShaderMaterial_sg2ww")
@@ -93,23 +108,6 @@ position_offset = Vector2(-25, -25)
 base_texture = ExtResource("4_6i3ph")
 texture_progress = 1.0
 empty_tiles_change_duration = 0.0
-circle_filter_enabled = false
-
-[node name="RingShadow" parent="." unique_id=899718494 instance=ExtResource("3_uipbx")]
-material = SubResource("ShaderMaterial_i3xnt")
-offset_left = -35.13
-offset_top = -37.0
-offset_right = 44.87
-offset_bottom = 43.0
-pivot_offset = Vector2(40, 40)
-diagonal_lines = 4.0
-value_offset = 0.035
-position_offset = Vector2(-35.13, -37)
-scale_affects_position = false
-inner_circle_radius = 0.385
-highlight_circle_radius_offset = 0.04
-highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)
-is_shadow = true
 
 [node name="Ring" parent="." unique_id=657619387 instance=ExtResource("3_uipbx")]
 material = SubResource("ShaderMaterial_fy10u")
@@ -121,8 +119,6 @@ pivot_offset = Vector2(40, 40)
 diagonal_lines = 3.0
 value_offset = 0.045
 position_offset = Vector2(-40, -40)
-tile_size = 0.0
-scale_affects_position = false
 inner_circle_radius = 0.385
 highlight_circle_radius_offset = 0.04
 highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)

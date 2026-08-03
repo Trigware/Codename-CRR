@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://br61pt68x1ijp"]
+
+[ext_resource type="PackedScene" uid="uid://8if1fnw8lwp2" path="res://Scenes/MemoryField.tscn" id="1_rbsnh"]
+[ext_resource type="Script" uid="uid://iwlcekacmx1" path="res://Scripts/BossMemoryField.gd" id="2_m1rcd"]
+[ext_resource type="Script" uid="uid://bmfs4034pwuk3" path="res://Scripts/MemoryFieldRect.gd" id="3_m1rcd"]
+
+[node name="Boss Memory Field" type="Control" unique_id=871810647]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_m1rcd")
+
+[node name="MemoryField" parent="." unique_id=3358750 instance=ExtResource("1_rbsnh")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1200.0
+grow_horizontal = 1
+grow_vertical = 1
+glyphs_per_axis = 21.0
+rect_array = Array[ExtResource("3_m1rcd")]([])
+memory_digits_time_to_reset = 1.0
+diagonal_lines = 32.0
+
+[node name="Warning Root" type="Node2D" parent="." unique_id=1863697419]
