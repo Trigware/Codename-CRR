@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3tk85h3mb7k0"
+path="res://.godot/imported/Directed Projectile.wav-ef04430ab34333e4f96359b50377fdd9.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Directed Projectile.wav"
+dest_files=["res://.godot/imported/Directed Projectile.wav-ef04430ab34333e4f96359b50377fdd9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

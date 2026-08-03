@@ -12,6 +12,9 @@ const SFX_HURT = preload("uid://6bgyk0kbstla")
 const SFX_MOUSE_DROP = preload("uid://cqoukcy2y53hb")
 const SFX_WINDOW_FALL = preload("uid://3yd4vm2vfl3v")
 const SFX_EXPLOSION = preload("uid://detethn63ptps")
+const SFX_CHARGE_RING = preload("uid://by8ef1hwbcscg")
+const SFX_DIRECTED_PROJECTILE = preload("uid://b3tk85h3mb7k0")
+const SFX_MEMORY_FIELD_OPEN = preload("uid://bdo84xujlafr6")
 
 const IMG_FRAGTEX_LOGO = preload("uid://bbabfl0jbc3jr")
 
@@ -21,6 +24,7 @@ const SCN_EXPLOSION = preload("uid://b6tuxk7jwp8wj")
 const SCN_SPAWNED_EMITTER = preload("uid://dg0q5p68r5rna")
 const SCN_PROJECTILE_WARNING = preload("uid://ifagqr77ctkv")
 const SCN_CIRCLE_PROJECTILE = preload("uid://dalabol3t5h3b")
+const SCN_FALLING_WINDOW = preload("uid://dq5cqg83c43wy")
 
 const SHD_PROJECTILE_GLITCHING = preload("uid://c1pfplxjs7bje")
 const SHD_SPAWNED_EMITTER = preload("uid://duqyjb1k0p5is")

@@ -43,6 +43,7 @@ func fire_projectile_ring():
 	if diff_angle_restricted: will_change_angle = false
 	if projectile_fire_count == diff_angle_deterministic_fire_on_count: will_change_angle = true
 	var projectile_diff = possible_projectile_diff if will_change_angle else 0.0
+	Audio.play(UID.SFX_DIRECTED_PROJECTILE)
 	
 	for i in range(spawned_projectile_count):
 		var current_projectile = fire_ui_projectile()

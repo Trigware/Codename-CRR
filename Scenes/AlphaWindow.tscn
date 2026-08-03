@@ -15,7 +15,7 @@ shader_parameter/texture_size = Vector2(1.25, 1.25)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 0.5
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 152.95723150001604
+shader_parameter/pattern_repeated = 214.92998216669434
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
@@ -36,7 +36,6 @@ script = ExtResource("1_0kypy")
 canvas_item_default_texture_filter = 0
 
 [node name="Glitched Window" parent="." unique_id=1823381495 instance=ExtResource("4_q7hp2")]
-visible = false
 material = SubResource("ShaderMaterial_x5lk5")
 diagonal_lines = 0.5
 pattern_speed = 1.5

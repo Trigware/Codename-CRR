@@ -18,9 +18,12 @@ const leaf_size = Vector2(20, 20)
 var bounds_window: Window
 var ring_alpha_modulate: float = 0
 var ring_size: float = 0.85
+var relative_position: Vector2
+var apply_relative_position = false
 
 func _process(delta: float):
 	handle_ring(delta)
+	handle_relative_position()
 
 func adjust_leaf(window):
 	show()
@@ -29,6 +32,11 @@ func adjust_leaf(window):
 	position += Vector2(bounds_window.position)
 	glitched_window.alpha_modulate = 0
 	make_leaf_move()
+
+func handle_relative_position():
+	if not apply_relative_position: return
+	var screen_size = Vector2(DisplayServer.screen_get_size())
+	position = screen_size * relative_position
 
 const base_ring_size = 40
 const rotation_speed = 0.125
@@ -52,7 +60,7 @@ func handle_mouse_ring_collision():
 	var cursor_to_ring_dir = local_cursor.normalized()
 	var updated_cursor_local = cursor_to_ring_dir * ring_radius
 	var updated_cursor_global = to_global(updated_cursor_local)
-	mouse_cursor.global_position = updated_cursor_global
+	#mouse_cursor.global_position = updated_cursor_global
 
 const amount_of_leaf_movements = 6
 const leaf_texture_progress_tween_duration = 0.8

@@ -4,9 +4,63 @@
 [ext_resource type="Texture2D" uid="uid://bbabfl0jbc3jr" path="res://Textures/FragVertex.png" id="1_vqcpm"]
 [ext_resource type="FontFile" uid="uid://dil43sbwcg2uc" path="res://Fonts/Leafcross Font.png" id="2_pjn5r"]
 [ext_resource type="Texture2D" uid="uid://dt1rrcqicxjk0" path="res://Textures/WindowButton.png" id="3_lb4ew"]
+[ext_resource type="Texture2D" uid="uid://bvh0iktjb2w4w" path="res://Textures/PopupBottom.png" id="3_ub0ol"]
+[ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="6_yyhar"]
+[ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="7_2puhq"]
+
+[sub_resource type="Gradient" id="Gradient_bm7hj"]
+offsets = PackedFloat32Array(0.2951807, 1)
+colors = PackedColorArray(0.64, 0.64, 0.64, 1, 0.8, 0.8, 0.8, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ub0ol"]
+gradient = SubResource("Gradient_bm7hj")
+width = 200
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7hj"]
 size = Vector2(121, 50.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvgfo"]
+shader = ExtResource("7_2puhq")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(12.007132, 1.922821)
+shader_parameter/texture_scale = Vector2(100, 100)
+shader_parameter/diagonal_lines = 100.0
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 0.23127494333333679
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/base_texture = ExtResource("3_ub0ol")
+shader_parameter/texture_progress = 0.55
+shader_parameter/alpha_modulate = 1.0
+shader_parameter/is_shadow = false
+shader_parameter/tile_size = 0.0
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2puhq"]
+shader = ExtResource("7_2puhq")
+shader_parameter/pixel_count = Vector2(1000, 1000)
+shader_parameter/texture_size = Vector2(8.468031, 3.5699916)
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/diagonal_lines = 0.805
+shader_parameter/gap_size = 0.5
+shader_parameter/pattern_repeated = 34.69124149999927
+shader_parameter/line_color = Vector4(0, 0, 0, 0)
+shader_parameter/gap_color = Vector4(0, 0, 0, 0)
+shader_parameter/texture_progress = 0.0
+shader_parameter/alpha_modulate = 0.25
+shader_parameter/is_shadow = false
+shader_parameter/tile_size = 0.0
+shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+shader_parameter/circle_filter_enabled = false
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
+shader_parameter/highlight_circle_radius_offset = 0.0
+shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
 
 [node name="Window Popup" type="Window" unique_id=337976246]
 canvas_item_default_texture_filter = 0
@@ -18,52 +72,41 @@ size = Vector2i(480, 225)
 script = ExtResource("1_bm7hj")
 hovered_button_color = Color(0.6509804, 0.9019608, 1, 1)
 
-[node name="Upper Background" type="ColorRect" parent="." unique_id=1128606782]
+[node name="Upper" type="TextureRect" parent="." unique_id=704565547]
 offset_right = 480.0
-offset_bottom = 147.0
-color = Color(0.8, 0.8, 0.8, 1)
-
-[node name="Bottom Background" type="ColorRect" parent="." unique_id=118663381]
-offset_top = 147.0
-offset_right = 480.0
-offset_bottom = 306.0
-color = Color(0.72, 0.72, 0.72, 1)
+offset_bottom = 145.0
+texture = SubResource("GradientTexture2D_ub0ol")
 
 [node name="Seperator" type="ColorRect" parent="." unique_id=1640606083]
-offset_top = 145.0
+offset_top = 143.0
 offset_right = 480.0
-offset_bottom = 148.0
-color = Color(0.4, 0.4, 0.4, 1)
-
-[node name="Logo Shadow" type="Sprite2D" parent="." unique_id=1286472773]
-modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-position = Vector2(21, 21)
-scale = Vector2(3, 3)
-texture = ExtResource("1_vqcpm")
-centered = false
-
-[node name="Logo" type="Sprite2D" parent="." unique_id=1081175375]
-texture_filter = 1
-position = Vector2(15, 15)
-scale = Vector2(3, 3)
-texture = ExtResource("1_vqcpm")
-centered = false
+offset_bottom = 151.0
+color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="Message" type="Label" parent="." unique_id=206373662]
+z_index = 1
 texture_filter = 1
 texture_repeat = 2
-offset_left = 126.0
-offset_top = 6.0
-offset_right = 461.0
-offset_bottom = 136.0
+offset_left = 149.0
+offset_top = 1.0
+offset_right = 472.0
+offset_bottom = 134.0
 theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("2_pjn5r")
-theme_override_font_sizes/font_size = 40
-text = "This is a message!"
+theme_override_font_sizes/font_size = 36
+text = "Now ongoing:
+Second Capture"
 autowrap_mode = 3
 
+[node name="Bottom" type="TextureRect" parent="." unique_id=1878341746]
+offset_top = 148.0
+offset_right = 480.0
+offset_bottom = 225.0
+texture = ExtResource("3_ub0ol")
+
 [node name="OkButton" type="Area2D" parent="." unique_id=2121929339]
+position = Vector2(-159, -2)
 
 [node name="Button Texture" type="Sprite2D" parent="OkButton" unique_id=203154931]
 position = Vector2(401, 188)
@@ -86,3 +129,69 @@ vertical_alignment = 1
 visible = false
 position = Vector2(401.5, 187.75)
 shape = SubResource("RectangleShape2D_bm7hj")
+
+[node name="Tiled Diagonals" parent="." unique_id=279757855 instance=ExtResource("6_yyhar")]
+material = SubResource("ShaderMaterial_rvgfo")
+offset_top = 148.34
+offset_right = 480.28528
+offset_bottom = 225.25284
+diagonal_lines = 100.0
+pixel_count = Vector2i(30000, 30000)
+texture_scale = Vector2(100, 100)
+pattern_speed = 0.01
+position_offset = Vector2(0, 148.34)
+base_texture = ExtResource("3_ub0ol")
+texture_progress = 0.55
+
+[node name="Fragtex" type="Node2D" parent="." unique_id=921530199]
+position = Vector2(2, -1)
+
+[node name="Logo Shadow" type="Sprite2D" parent="Fragtex" unique_id=1286472773]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+position = Vector2(21, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("1_vqcpm")
+centered = false
+
+[node name="Logo" type="Sprite2D" parent="Fragtex" unique_id=1081175375]
+texture_filter = 1
+position = Vector2(15, 15)
+scale = Vector2(3, 3)
+texture = ExtResource("1_vqcpm")
+centered = false
+
+[node name="HSeperator" type="ColorRect" parent="." unique_id=417065019]
+offset_left = 141.30121
+offset_top = -1.1578904
+offset_right = 288.5935
+offset_bottom = 4.143318
+rotation = 1.5707964
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Label" type="Label" parent="." unique_id=982590186]
+modulate = Color(0.52, 0.3224, 0.3224, 1)
+offset_left = 1.0
+offset_top = 148.0
+offset_right = 480.0
+offset_bottom = 225.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_pjn5r")
+theme_override_font_sizes/font_size = 60
+text = "AVOID!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Glitched Window" parent="." unique_id=94445045 instance=ExtResource("6_yyhar")]
+material = SubResource("ShaderMaterial_2puhq")
+offset_left = 140.975
+offset_right = 479.69626
+offset_bottom = 142.79967
+diagonal_lines = 0.805
+value_offset = 0.095
+pattern_speed = 1.5
+position_offset = Vector2(140.975, 0)
+alpha_modulate = 0.25
+empty_tiles_change_duration = 0.25

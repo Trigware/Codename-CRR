@@ -43,7 +43,7 @@ func _process(delta: float):
 	handle_warning_animation(delta)
 
 var time_since_warning_created: float = 0
-const warning_animation_duration: float = 4.25
+var warning_animation_duration: float = 4.25
 const animation_wave_count: int = 3
 const warning_hide_duration: float = 0.375
 var reached_animation_duration_end = false

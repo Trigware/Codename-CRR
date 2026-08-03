@@ -10,8 +10,11 @@ extends Node2D
 
 const init_window_position = Vector2(0, 32)
 var is_root_fullscreen = false
+const time_scale_applied = false
+const debug_engine_time_scale = 10
 
 func _ready():
+	if time_scale_applied: Engine.time_scale = debug_engine_time_scale
 	ProjectileEmitter.projectile_fire_count = 0
 	bounds_window.leaf_resize_end.connect(on_leaf_resize_end)
 	mouse_texture.texture_progress = 1
@@ -41,6 +44,7 @@ func _process(delta: float):
 	if alpha_window.mode != intended_window_mode: alpha_window.mode = intended_window_mode
 	if Input.is_action_just_pressed("quit_game"): get_tree().quit()
 	if Input.is_action_just_pressed("debug_progress") and skip_enabled: handle_out_of_box_mouse_event()
+	if Input.is_action_just_pressed("debug_stop_time_scale"): Engine.time_scale = 1
 	handle_cursor_gravity(delta)
 
 const cursor_gravity_multiplier: float = 80

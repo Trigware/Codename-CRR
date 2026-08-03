@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dq5cqg83c43wy"]
+
+[ext_resource type="PackedScene" uid="uid://csxmjbgod123e" path="res://Scenes/WindowPopup.tscn" id="1_h6pax"]
+
+[node name="Falling Window" type="Node2D" unique_id=2002050975]
+
+[node name="Window Popup" parent="." unique_id=337976246 instance=ExtResource("1_h6pax")]
