@@ -111,3 +111,10 @@ func is_cursor_in_memory_field_circle():
 		var dist_to_origin = mouse_pos.distance_to(origin_pos)
 		if dist_to_origin <= actual_radius: return true
 	return false
+
+const memory_rect_time_to_destroy = 0.85
+
+func destroy_memory_field_rect():
+	var rect_to_be_destroyed: MemoryFieldRect = memory_field.rect_array[1]
+	await Help.tween(rect_to_be_destroyed, "rect:size:y", 0, memory_rect_time_to_destroy)
+	memory_field.rect_array.pop_back()

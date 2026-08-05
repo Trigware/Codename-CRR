@@ -60,7 +60,7 @@ func handle_mouse_ring_collision():
 	var cursor_to_ring_dir = local_cursor.normalized()
 	var updated_cursor_local = cursor_to_ring_dir * ring_radius
 	var updated_cursor_global = to_global(updated_cursor_local)
-	#mouse_cursor.global_position = updated_cursor_global
+	mouse_cursor.global_position = updated_cursor_global
 
 const amount_of_leaf_movements = 6
 const leaf_texture_progress_tween_duration = 0.8

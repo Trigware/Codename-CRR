@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://chy0uh4wjfm2r" path="res://Scenes/Tiled Diagonals.tscn" id="3_uipbx"]
 [ext_resource type="Texture2D" uid="uid://3c01eucy8keq" path="res://Textures/FinalLeafBig.png" id="4_6i3ph"]
 [ext_resource type="Shader" uid="uid://244vsaqpoj7d" path="res://Shaders/TilingDiagonals.gdshader" id="5_i3xnt"]
+[ext_resource type="Script" uid="uid://pac7cmvp5k5q" path="res://Scripts/FallingWindowFactory.gd" id="7_fy10u"]
 [ext_resource type="Script" uid="uid://7xff5if4c11r" path="res://Scripts/LeafBossHandlerer.gd" id="7_sg2ww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3xnt"]
@@ -35,7 +36,7 @@ shader_parameter/texture_size = Vector2(1.25, 1.25)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 8.0
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 1675.5371322057276
+shader_parameter/pattern_repeated = 116.64530659997823
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/base_texture = ExtResource("4_6i3ph")
@@ -125,3 +126,6 @@ highlighted_circle_modulate = Color(0.75, 0.75, 0.75, 1)
 
 [node name="Boss Handlerer" type="Node2D" parent="." unique_id=51678165]
 script = ExtResource("7_sg2ww")
+
+[node name="Falling Window Factory" type="Node2D" parent="Boss Handlerer" unique_id=2107742725]
+script = ExtResource("7_fy10u")

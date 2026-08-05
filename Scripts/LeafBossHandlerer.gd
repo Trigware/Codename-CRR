@@ -5,6 +5,7 @@ extends ProjectileEmitter
 @onready var leaf_root: LeafBossRoot = get_parent()
 @onready var alpha_window: AlphaWindowHandleler = leaf_root.get_parent()
 @onready var boss_memory_field: BossMemoryField = alpha_window.get_node("Boss Memory Field")
+@onready var falling_window_factory: FallingWindowFactory = $"Falling Window Factory"
 var spawned_emitter_arr: Array[SpawnedEmitter]
 
 func _ready():
@@ -50,10 +51,11 @@ func _process(delta: float):
 		
 	var projectile_summon_progression = time_since_projectile_started_spawning / used_despawn_time
 	emission_multiplier_progress += delta / time_until_minimal_emission_multiplier
+	emission_multiplier_progress = min(emission_multiplier_progress, 1)
 	current_particle_emission_timer_multiplier = lerp(1.0, minimum_emission_multiplier, emission_multiplier_progress)
 	current_moving_ring_speed = lerp(init_moving_ring_speed, maximum_moving_ring_speed, projectile_summon_progression)
 
-const time_until_projectiles_despawn: float = 18
+const time_until_projectiles_despawn: float = 20
 var emitter_spawning_disabled = false
 
 func despawn_projectile_emitters():
@@ -65,7 +67,7 @@ const ring_show_tween_duration = 1.1
 const final_ring_size = 1.15
 const base_ring_radius = 40
 const init_moving_ring_speed = 0.4
-const maximum_moving_ring_speed = 0.65
+const maximum_moving_ring_speed = 0.7
 const time_until_minimal_emission_multiplier = 18
 
 var current_moving_ring_speed = init_moving_ring_speed
@@ -105,18 +107,24 @@ func handle_circle_projectile_progression(delta: float):
 	time_since_circle_projectiles_started += delta
 	hardest_circle_projectiles_progress = min(time_since_circle_projectiles_started / time_for_hardest_circle_projectiles, 1)
 
-const amount_of_fired_circle_projectiles = 5
+const amount_of_fired_circle_projectiles = 7
 
 func handle_circle_projectile_firing():
-	return
 	create_additional_memory_field_rect()
 	move_leaf_in_lemniscate_pattern()
 	is_firing_circle_projectiles = true
-	for i in range(amount_of_fired_circle_projectiles):
+	var used_fired_circle_projectile_count = 0 if skip_enabled else amount_of_fired_circle_projectiles
+	for i in range(used_fired_circle_projectile_count):
 		var circle_projectile_fire_wait_duration_multiplier = lerp(1.0, min_circle_projectile_fire_wait_duration_multiplier, hardest_circle_projectiles_progress)
 		var fire_wait_duration = randf_range(minimum_fire_wait_duration, maximum_fire_wait_duration) * circle_projectile_fire_wait_duration_multiplier
 		await Help.wait(fire_wait_duration)
 		fire_circle_projectile_set()
+	falling_window_factory.boss_handleler = self
+	falling_window_factory.start_spawning_windows()
+	falling_window_factory.finished_window_sequence.connect(on_window_sequence_finished)
+
+func on_window_sequence_finished():
+	boss_memory_field.destroy_memory_field_rect()
 
 var pattern_move_progress: float = 0
 const time_to_complete_lemniscate_pattern: float = 30
@@ -145,7 +153,7 @@ func move_leaf_in_lemniscate_pattern():
 		await Help.wait_frame()
 
 func create_additional_memory_field_rect():
-	const wait_time_for_additional_memory_rect_creation = 5.5
+	const wait_time_for_additional_memory_rect_creation = 5.4
 	await Help.wait(wait_time_for_additional_memory_rect_creation)
 	boss_memory_field.create_projectile_warnings()
 
@@ -155,7 +163,7 @@ var circle_projectiles_in_set: int
 
 const circle_projectile_spawn_distance_portion = 0.425
 const min_circle_projectile_scale_multiplier = 0.4
-const max_circle_projectile_scale_multiplier = 0.55
+const max_circle_projectile_scale_multiplier = 0.525
 const skipped_projectile_count = 1
 
 func generate_skipped_projectile_array() -> Array:
@@ -177,6 +185,7 @@ const circle_projectile_warning_duration = 0.3
 func fire_circle_projectile_set():
 	circle_projectiles_in_set = int(lerp(min_circle_projectiles_in_set, max_circle_projectiles_in_set, hardest_circle_projectiles_progress))
 	create_circle_projectile_warning()
+	Audio.play_pitch(UID.SFX_WARNING_APPEAR)
 	await Help.wait(circle_projectile_warning_duration)
 	Audio.play(UID.SFX_DIRECTED_PROJECTILE)
 	var one_projectile_angle_range = TAU / circle_projectiles_in_set

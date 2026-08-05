@@ -11,11 +11,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x5lk5"]
 shader = ExtResource("5_x5lk5")
 shader_parameter/pixel_count = Vector2(1000, 1000)
-shader_parameter/texture_size = Vector2(1.25, 1.25)
+shader_parameter/texture_size = Vector2(1.5177004, 1.4920167)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 0.5
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 214.92998216669434
+shader_parameter/pattern_repeated = 4130.812418839375
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
@@ -24,8 +24,8 @@ shader_parameter/is_shadow = false
 shader_parameter/tile_size = 0.1
 shader_parameter/empty_tiles = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
 shader_parameter/circle_filter_enabled = false
-shader_parameter/outer_circle_radius = 0.0
-shader_parameter/inner_circle_radius = 0.0
+shader_parameter/outer_circle_radius = 0.5
+shader_parameter/inner_circle_radius = 0.45
 shader_parameter/highlight_circle_radius_offset = 0.0
 shader_parameter/highlighted_circle_modulate = Vector4(0, 0, 0, 0)
 
@@ -36,10 +36,14 @@ script = ExtResource("1_0kypy")
 canvas_item_default_texture_filter = 0
 
 [node name="Glitched Window" parent="." unique_id=1823381495 instance=ExtResource("4_q7hp2")]
+visible = false
 material = SubResource("ShaderMaterial_x5lk5")
+offset_right = 60.708015
+offset_bottom = 59.680668
+size_flags_vertical = 8
 diagonal_lines = 0.5
 pattern_speed = 1.5
-empty_tiles_change_duration = 0.25
+tile_size = 0.1
 
 [node name="Boss Memory Field" parent="." unique_id=3358750 instance=ExtResource("5_fk3dw")]
 offset_right = 1920.0

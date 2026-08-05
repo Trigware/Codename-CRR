@@ -6,5 +6,10 @@ func _ready():
 const cursor_size = Vector2(18, 27)
 
 func on_area_entered(area: Area2D):
-	if not area.is_in_group("UIProjectile"): return
-	print("Cursor hit!")
+	if not is_in_any_group(area, "UIProjectile", "FallingWindow"): return
+	if area.is_in_group("FallingWindow") and area.is_window_safe: return
+
+func is_in_any_group(area: Area2D, ...groups):
+	for group_name: String in groups:
+		if area.is_in_group(group_name): return true
+	return false
