@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bxsxp5p0dk0rd"]
+
+[ext_resource type="Texture2D" uid="uid://bm800swgynlba" path="res://Textures/Hint Arrow.png" id="1_atx5c"]
+[ext_resource type="Script" uid="uid://bu14t1fk700p3" path="res://Scripts/HintArrows.gd" id="1_icgd1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q45bn"]
+load_path = "res://.godot/imported/Hint Arrow.png-7eb8999f2abe2a5b29fce517f93b475a.ctex"
+
+[node name="Hint Arrows" type="Node2D" unique_id=1881675829]
+script = ExtResource("1_icgd1")
+
+[node name="Left Arrow" type="Sprite2D" parent="." unique_id=938159810]
+position = Vector2(-16, 0)
+texture = ExtResource("1_atx5c")
+
+[node name="Right Arrow" type="Sprite2D" parent="." unique_id=559898728]
+position = Vector2(16, 0)
+texture = SubResource("CompressedTexture2D_q45bn")
+flip_h = true

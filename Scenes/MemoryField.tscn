@@ -3,8 +3,6 @@
 [ext_resource type="Shader" uid="uid://c8j1vh7up7vyk" path="res://Shaders/MemoryField.gdshader" id="1_dwccf"]
 [ext_resource type="Script" uid="uid://baxjng8qttm51" path="res://Scripts/MemoryField.gd" id="2_3csko"]
 [ext_resource type="Texture2D" uid="uid://besybhjwn0ivu" path="res://Textures/MemoryField.png" id="2_k5ig7"]
-[ext_resource type="Script" uid="uid://bmfs4034pwuk3" path="res://Scripts/MemoryFieldRect.gd" id="4_k5ig7"]
-[ext_resource type="Resource" uid="uid://1ycblvooojvc" path="res://FullMemoryRect.tres" id="5_vvm0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3csko"]
 shader = ExtResource("1_dwccf")
@@ -13,7 +11,7 @@ shader_parameter/texture_size = Vector2(48, 30)
 shader_parameter/texture_scale = Vector2(100, 100)
 shader_parameter/diagonal_lines = 32.0
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 56.627830253383536
+shader_parameter/pattern_repeated = 31.915707533356265
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
@@ -29,13 +27,14 @@ shader_parameter/highlighted_circle_modulate = Vector4(0.14, 0, 0, 0)
 shader_parameter/outline_color = Vector4(0, 0, 0, 0)
 shader_parameter/glyph_modulate = Vector4(0, 0, 0, 0)
 shader_parameter/memory_field_spritesheet = ExtResource("2_k5ig7")
-shader_parameter/rect_position_array = [Vector2(0.5, 0.5)]
-shader_parameter/rect_size_array = [Vector2(inf, 0.063)]
-shader_parameter/rect_rotation_rad_array = [0.0]
-shader_parameter/rect_outline_size_array = [0.0]
+shader_parameter/rect_position_array = []
+shader_parameter/rect_size_array = []
+shader_parameter/rect_rotation_rad_array = []
+shader_parameter/rect_outline_size_array = []
 shader_parameter/circle_position_array = []
 shader_parameter/circle_radius_array = []
-shader_parameter/digit_tile_array = [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0]
+shader_parameter/circle_alpha_modulate = 1.0
+shader_parameter/digit_tile_array = [1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1]
 shader_parameter/glyphs_per_axis = 16.0
 shader_parameter/glyph_scale = 0.75
 shader_parameter/glyph_offset = Vector2(0, 0)
@@ -54,7 +53,6 @@ outline_color = Color(0.504, 0.9, 0.5238, 1)
 glyph_modulate = Color(0.5058824, 0.9019608, 0.5254902, 1)
 memory_field_spritesheet = ExtResource("2_k5ig7")
 glyphs_per_axis = 16.0
-rect_array = Array[ExtResource("4_k5ig7")]([ExtResource("5_vvm0g")])
 memory_digits_time_to_reset = 60000.0
 glyph_scale = 0.75
 line_color = Color(0.16790001, 0.23, 0.17411, 1)

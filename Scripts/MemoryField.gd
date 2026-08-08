@@ -12,6 +12,7 @@ enum MemoryFieldUniform {
 	RectOutlineSizeArray,
 	CirclePositionArray,
 	CircleRadiusArray,
+	CircleAlphaModulate,
 	TextureSize,
 	GlyphsPerAxis,
 	DigitTileArray,
@@ -28,6 +29,7 @@ enum MemoryFieldUniform {
 @export var memory_digits_time_to_reset: float
 @export var glyph_scale: float = 1
 @export var glyph_offset: Vector2
+@export var circle_alpha_modulate: float = 1
 
 func mem_uniform_as_str(uniform: MemoryFieldUniform) -> String: return MemoryFieldUniform.keys()[uniform].to_snake_case()
 func mem_set_uniform(parameter: MemoryFieldUniform, value): material.set_shader_parameter(mem_uniform_as_str(parameter), value)
@@ -73,6 +75,7 @@ func update_visibility_changing_array():
 	
 	mem_set_uniform(MemoryFieldUniform.CirclePositionArray, circle_position_array)
 	mem_set_uniform(MemoryFieldUniform.CircleRadiusArray, circle_radius_array)
+	mem_set_uniform(MemoryFieldUniform.CircleAlphaModulate, circle_alpha_modulate)
 
 var previous_time_section : float = -1
 

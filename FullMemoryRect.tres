@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MemoryFieldRect" format=3 uid="uid://1ycblvooojvc"]
-
-[ext_resource type="Script" uid="uid://bmfs4034pwuk3" path="res://Scripts/MemoryFieldRect.gd" id="1_cuqs0"]
-
-[resource]
-script = ExtResource("1_cuqs0")
-rect = Rect2(0.5, 0.52, inf, 0.063)
-metadata/_custom_type_script = "uid://bmfs4034pwuk3"

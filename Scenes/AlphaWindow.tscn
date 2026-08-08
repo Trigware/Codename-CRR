@@ -15,7 +15,7 @@ shader_parameter/texture_size = Vector2(1.5177004, 1.4920167)
 shader_parameter/texture_scale = Vector2(1, 1)
 shader_parameter/diagonal_lines = 0.5
 shader_parameter/gap_size = 0.5
-shader_parameter/pattern_repeated = 4130.812418839375
+shader_parameter/pattern_repeated = 484.1171719998577
 shader_parameter/line_color = Vector4(0, 0, 0, 0)
 shader_parameter/gap_color = Vector4(0, 0, 0, 0)
 shader_parameter/texture_progress = 0.0
@@ -46,8 +46,8 @@ pattern_speed = 1.5
 tile_size = 0.1
 
 [node name="Boss Memory Field" parent="." unique_id=3358750 instance=ExtResource("5_fk3dw")]
-offset_right = 1920.0
-offset_bottom = 1200.0
+offset_right = 1939.2
+offset_bottom = 1212.0
 
 [node name="Boss Leaf" parent="." unique_id=1512060177 instance=ExtResource("6_rdjoi")]
 

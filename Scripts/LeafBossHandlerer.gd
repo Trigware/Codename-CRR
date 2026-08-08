@@ -123,7 +123,12 @@ func handle_circle_projectile_firing():
 	falling_window_factory.start_spawning_windows()
 	falling_window_factory.finished_window_sequence.connect(on_window_sequence_finished)
 
+var lemniscate_move_pattern_allowed = true
+const leaf_center_movement_duration: float = 1.85
+
 func on_window_sequence_finished():
+	lemniscate_move_pattern_allowed = false
+	Help.tween(leaf_root, "relative_position", Vector2(0.5, 0.5), leaf_center_movement_duration)
 	boss_memory_field.destroy_memory_field_rect()
 
 var pattern_move_progress: float = 0
@@ -141,6 +146,7 @@ func move_leaf_in_lemniscate_pattern():
 	await Help.wait(wait_to_start_lumniscate_pattern)
 	leaf_root.apply_relative_position = true
 	while true:
+		if not lemniscate_move_pattern_allowed: return
 		var delta = get_process_delta_time()
 		time_since_started_lemniscate_pattern += delta
 		var lemniscate_completion_time_multiplier_progress = min(time_since_started_lemniscate_pattern / time_to_reach_minimum_lemniscate_completion_multiplier, 1)

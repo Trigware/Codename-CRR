@@ -2,13 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://8if1fnw8lwp2" path="res://Scenes/MemoryField.tscn" id="1_rbsnh"]
 [ext_resource type="Script" uid="uid://iwlcekacmx1" path="res://Scripts/BossMemoryField.gd" id="2_m1rcd"]
-[ext_resource type="Script" uid="uid://bmfs4034pwuk3" path="res://Scripts/MemoryFieldRect.gd" id="3_m1rcd"]
 
 [node name="Boss Memory Field" type="Control" unique_id=871810647]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1239.2
+offset_bottom = 812.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_m1rcd")
@@ -24,7 +25,6 @@ grow_horizontal = 1
 grow_vertical = 1
 rotation = -0.0012095977
 glyphs_per_axis = 21.0
-rect_array = Array[ExtResource("3_m1rcd")]([])
 memory_digits_time_to_reset = 1.0
 diagonal_lines = 32.0
 

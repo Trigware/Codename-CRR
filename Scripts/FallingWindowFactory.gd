@@ -16,6 +16,7 @@ func start_spawning_windows():
 	await Help.wait(init_spawn_delay)
 	while true:
 		if not is_sequence_active: break
+		if time_between_projectiles < minimum_time_between_projectiles: break
 		await spawn_window()
 		await Help.wait(wait_between_window_spawns)
 	finished_window_sequence.emit()

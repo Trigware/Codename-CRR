@@ -8,6 +8,7 @@ const relative_scale = 0.2
 @onready var ring_texture = $Ring
 @onready var ring_shadow = $RingShadow
 var leaf_boss_handlerer: LeafBossHandleler
+var factory_emitter = null
 
 const circle_appear_duration = 0.75
 
@@ -40,6 +41,8 @@ func _process(delta: float):
 	var bottom_right_edge = monitor_size - scale * ring_size
 	position = bottom_right_edge * relative_position
 	time_since_emitter_spawned += delta
+	ring_texture.alpha_modulate = alpha_modulate
+	ring_shadow.alpha_modulate = alpha_modulate
 	if emitter_is_despawning: move_projectile_emitter_on_despawn(delta)
 	else: move_projectile_emitter(delta)
 
@@ -74,9 +77,12 @@ const maximum_emitter_count = 4
 var amount_of_segment_endings = 0
 const emitter_origin_offset = 40
 const segment_ending_count_to_spawn_emitter = [0, 2, 5, 11]
+var relative_x_position_at_despawn: float
 
 func handle_segment_ending(forced_spawn = false):
-	if to_be_despawned: emitter_is_despawning = true
+	if to_be_despawned:
+		emitter_is_despawning = true
+		relative_x_position_at_despawn = relative_position.x
 	direction_index = (direction_index + 1) % move_directions_arr.size()
 	if not is_factory or emitters_spawned >= maximum_emitter_count: return
 	
@@ -92,6 +98,7 @@ func handle_segment_ending(forced_spawn = false):
 	leaf_boss_handlerer.spawned_emitter_arr.append(spawned_emitter)
 	emitter_origin.position = Vector2.ONE * emitter_origin_offset
 	spawned_emitter.add_child(emitter_origin)
+	spawned_emitter.factory_emitter = self
 	
 	spawned_emitter.setup(emitter_origin, boss_projectiles, mouse_cursor)
 	spawned_emitter.leaf_boss_handlerer = leaf_boss_handlerer
@@ -137,7 +144,18 @@ var despawn_speed_progress: float = 0.0
 
 const despawn_emitter_direction_arr: Array[Vector2] = [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
 
+const relative_position_min_modulate = 0.2
+var alpha_modulate: float = 1
+
 func move_projectile_emitter_on_despawn(delta: float):
 	var despawn_emitter_direction = despawn_emitter_direction_arr[direction_index]
 	despawn_speed_progress = min(despawn_speed_progress + delta, 1)
 	relative_position += despawn_emitter_direction * despawn_emitter_speed * despawn_speed_progress * delta
+	var diff_from_init = abs(relative_position.x - relative_x_position_at_despawn)
+	var progress_to_min_modulate = diff_from_init / relative_position_min_modulate
+	alpha_modulate = clamp(1 - progress_to_min_modulate, 0, 1)
+	if progress_to_min_modulate < 1: return
+	
+	queue_free()
+	if factory_emitter != null and is_instance_valid(factory_emitter) and not factory_emitter.is_queued_for_deletion():
+		factory_emitter.queue_free()

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MemoryFieldRect" format=3 uid="uid://1ycblvooojvc"]
+
+[ext_resource type="Script" uid="uid://bmfs4034pwuk3" path="res://Scripts/MemoryFieldRect.gd" id="1_rbcgq"]
+
+[resource]
+script = ExtResource("1_rbcgq")
+rect = Rect2(0.75, 0.5, inf, 0.5)
+rotation_radians = 1.571
+metadata/_custom_type_script = "uid://bmfs4034pwuk3"

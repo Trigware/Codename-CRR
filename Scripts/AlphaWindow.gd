@@ -7,11 +7,12 @@ extends Node2D
 @onready var mouse_texture = mouse_cursor.get_node("Main")
 @onready var boss_leaf = $"Boss Leaf"
 @onready var boss_projectiles = $"Boss Projectiles"
+@onready var hint_arrows = bounds_window.hint_arrows
 
 const init_window_position = Vector2(0, 32)
 var is_root_fullscreen = false
-const time_scale_applied = false
-const debug_engine_time_scale = 10
+const time_scale_applied = true
+const debug_engine_time_scale = 1
 
 func _ready():
 	if time_scale_applied: Engine.time_scale = debug_engine_time_scale
@@ -20,6 +21,8 @@ func _ready():
 	mouse_texture.texture_progress = 1
 	bounds_window.animated_logo.skip_enabled = skip_enabled
 	boss_leaf.mouse_scaled.connect(on_mouse_scaled)
+	alpha_window.focus_exited.connect(func(): window_is_focused = false)
+	alpha_window.focus_entered.connect(func(): window_is_focused = true)
 	
 	var monitor_size = DisplayServer.screen_get_size()
 	alpha_window.size = monitor_size
@@ -37,9 +40,10 @@ func on_leaf_resize_end():
 
 const base_monitor_height: float = 1200
 var used_cursor_scale = 1.5
+var window_is_focused = true
 
 func _process(delta: float):
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if window_is_focused else Input.MOUSE_MODE_VISIBLE
 	var intended_window_mode = Window.MODE_FULLSCREEN if is_root_fullscreen else Window.MODE_MINIMIZED
 	if alpha_window.mode != intended_window_mode: alpha_window.mode = intended_window_mode
 	if Input.is_action_just_pressed("quit_game"): get_tree().quit()
@@ -71,6 +75,7 @@ var cursor_interactable = false
 
 func _input(event):
 	if not event is InputEventMouseMotion: return
+	if not window_is_focused: return
 	var motion_event = event as InputEventMouseMotion
 	var mouse_pos_change = motion_event.relative
 	if not cursor_interactable: return
@@ -132,7 +137,7 @@ const minimum_duration_multiplier = 0.7
 const glitch_screen_shake_magnitude = 45
 const window_shake_multiplier = 1.5
 const mouse_cursor_reset_pos_tween_duration = 0.35
-const skip_enabled = true
+const skip_enabled = false
 
 func on_cursor_glitch_event():
 	Help.tween(mouse_texture, "texture_progress", 0, glitch_mouse_tween_duration)
@@ -175,10 +180,13 @@ const empty_tiles_rate_tween_duration: float = 5
 
 var is_cursor_affected_by_gravity = false
 var cursor_gravity = 0
+const hint_arrows_hide_duration: float = 0.7
 
 func on_window_glitch_event():
 	bounds_window.animated_logo.leaf.hide()
 	boss_leaf.adjust_leaf(bounds_window)
+	hint_arrows.unshowable = true
+	Help.tween(hint_arrows, "modulate:a", 0, hint_arrows_hide_duration)
 	if not skip_enabled: is_cursor_affected_by_gravity = true
 
 func on_mouse_scaled():

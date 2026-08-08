@@ -14,6 +14,7 @@ uniform float[filter_object_max_count] rect_rotation_rad_array;
 uniform float[filter_object_max_count] rect_outline_size_array;
 uniform vec2[filter_object_max_count] circle_position_array;
 uniform float[filter_object_max_count] circle_radius_array;
+uniform float circle_alpha_modulate;
 uniform int[chosen_digit_count] digit_tile_array;
 uniform float glyphs_per_axis;
 uniform float glyph_scale;
@@ -100,7 +101,8 @@ void fragment() {
 	vec4 used_color = texture(memory_field_spritesheet, numeral_spritesheet_uv);
 	used_color *= glyph_modulate;
 	if (used_color.a == 0.0 || is_out_of_glyph) used_color = get_color_from_uv(UV);
-	if (!is_in_rect || is_in_circle) used_color.a = 0.0;
+	if (is_in_circle) used_color.a = 1.0 - circle_alpha_modulate;
+	if (!is_in_rect) used_color.a = 0.0;
 	if (is_in_rect_outline && !is_in_rect && !is_in_circle) used_color = outline_color;
 	COLOR = used_color;
 }

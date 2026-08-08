@@ -4,6 +4,8 @@ extends Window
 @onready var background = $Background
 @onready var animated_logo = $AnimatedLogo
 @onready var overlay = $Overlay
+@onready var mouse_cursor = get_parent().get_node("Cursor")
+@onready var hint_arrows = $"Hint Arrows"
 
 var bounds_window_size: Vector2i
 const bounds_background_size_multiplier = 1.5
@@ -22,6 +24,7 @@ func _ready():
 	title = init_title
 	animated_logo.whiteout_ended.connect(on_logo_whiteout_ended)
 	
+	hint_arrows.mouse_cursor = mouse_cursor
 	unresizable = true
 	position = monitor_size / 2 - bounds_window_size / 2
 	close_requested.connect(on_close_requested)

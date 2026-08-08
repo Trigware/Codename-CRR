@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://qh7myoxnegk4" path="res://Scripts/BoundsWindow.gd" id="1_y5f0i"]
 [ext_resource type="PackedScene" uid="uid://hbyg5sonndl1" path="res://Scenes/AnimatedLogo.tscn" id="2_7sg6g"]
+[ext_resource type="PackedScene" uid="uid://bxsxp5p0dk0rd" path="res://Scenes/HintArrows.tscn" id="3_wd084"]
 
 [node name="BoundsWindow" type="Window" unique_id=797944292]
 oversampling_override = 1.0
 initial_position = 1
+size = Vector2i(200, 200)
 script = ExtResource("1_y5f0i")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1112096009]
@@ -19,3 +21,5 @@ offset_bottom = 40.0
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.65, 0.65, 0.65, 1)
+
+[node name="Hint Arrows" parent="." unique_id=1881675829 instance=ExtResource("3_wd084")]

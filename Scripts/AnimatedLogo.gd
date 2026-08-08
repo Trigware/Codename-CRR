@@ -31,7 +31,7 @@ func _ready():
 		leaf.modulate.a = 1
 		animate_generic_cross()
 		return
-	handle_logo_animation()
+	await handle_logo_animation()
 
 func handle_logo_animation():
 	show_weird_tree()

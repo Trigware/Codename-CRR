@@ -25,6 +25,8 @@ signal ended_warning_animation
 
 func _ready():
 	Help.tween(self, "alpha_modulate", 1, warning_show_duration)
+	await Help.wait_frame()
+	show()
 
 var affect_transform: bool = true
 
